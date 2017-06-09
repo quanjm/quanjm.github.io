@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://quanjm.github.io/2017/05/31/Xen+Ceph+iscsi/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
 <meta property="og:description" content="前言本文参考徐小胖的CEPH快速部署，xenserver7底层虽然是CentOS7但是部署上还是有点小坑的，这里需要特别感谢leon和eden大师的大力协助,本文共分为三大部分：ceph部署、iscsi配置、开关机脚本部分。 ceph部署环境Xenserver7.0Ceph Jewel">
-<meta property="og:updated_time" content="2017-06-01T14:32:08.009Z">
+<meta property="og:updated_time" content="2017-06-09T16:26:41.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xen+Ceph+iscsi">
 <meta name="twitter:description" content="前言本文参考徐小胖的CEPH快速部署，xenserver7底层虽然是CentOS7但是部署上还是有点小坑的，这里需要特别感谢leon和eden大师的大力协助,本文共分为三大部分：ceph部署、iscsi配置、开关机脚本部分。 ceph部署环境Xenserver7.0Ceph Jewel">
@@ -629,27 +629,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
         </div>
         <ul class="search-ul">
           <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
-            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
-            3、在根目录_config.yml里添加配置：
 <pre style="font-size: 12px;" q-show="jsonFail">
-  jsonContent:
-    meta: false
-    pages: false
-    posts:
-      title: true
-      date: true
-      path: true
-      text: false
-      raw: false
-      content: false
-      slug: false
-      updated: false
-      comments: false
-      link: false
-      permalink: false
-      excerpt: false
-      categories: false
-      tags: true
 </pre>
           </p>
           <li class="search-li" q-repeat="items" q-show="isShow">
@@ -699,6 +679,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   
 </div>
+
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 

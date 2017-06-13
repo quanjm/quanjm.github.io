@@ -187,6 +187,33 @@
         
       </header>
     
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+    <span class="btn-bg"></span>
+    <span class="btn-text">文章导航</span>
+    </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ceph部署"><span class="toc-number">2.</span> <span class="toc-text">ceph部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-number">2.1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境清理"><span class="toc-number">2.2.</span> <span class="toc-text">环境清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yum源及ceph的安装"><span class="toc-number">2.3.</span> <span class="toc-text">yum源及ceph的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装ceph客户端"><span class="toc-number">2.4.</span> <span class="toc-text">安装ceph客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关闭防火墙"><span class="toc-number">2.5.</span> <span class="toc-text">关闭防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步时间："><span class="toc-number">2.6.</span> <span class="toc-text">同步时间：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#免秘钥登陆和添加host"><span class="toc-number">2.7.</span> <span class="toc-text">免秘钥登陆和添加host</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改dom0内存大小"><span class="toc-number">2.8.</span> <span class="toc-text">修改dom0内存大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始部署"><span class="toc-number">2.9.</span> <span class="toc-text">开始部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装ceph-deploy"><span class="toc-number">2.9.1.</span> <span class="toc-text">安装ceph-deploy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署monitor"><span class="toc-number">2.9.2.</span> <span class="toc-text">部署monitor:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署OSD："><span class="toc-number">2.9.3.</span> <span class="toc-text">部署OSD：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建RBD"><span class="toc-number">2.9.4.</span> <span class="toc-text">创建RBD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#config推送"><span class="toc-number">2.9.5.</span> <span class="toc-text">config推送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mon-amp-osd启动方式"><span class="toc-number">2.9.6.</span> <span class="toc-text">mon&osd启动方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iscsi配置"><span class="toc-number">3.</span> <span class="toc-text">iscsi配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装target"><span class="toc-number">3.1.</span> <span class="toc-text">安装target</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装keepalived（可选）"><span class="toc-number">3.2.</span> <span class="toc-text">安装keepalived（可选）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开关机脚本"><span class="toc-number">4.</span> <span class="toc-text">开关机脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关机脚本"><span class="toc-number">4.1.</span> <span class="toc-text">关机脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开机脚本"><span class="toc-number">4.2.</span> <span class="toc-text">开机脚本</span></a></li></ol></li></ol>
+    </div>
+    <script type="text/javascript">
+     function showToc(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:block");
+          show_toc_btn.setAttribute("style","display:none");
+         };
+      function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+     
+<!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文参考<a href="http://xuxiaopang.com/2016/10/09/ceph-quick-install-el7-jewel/" target="_blank" rel="external">徐小胖的CEPH快速部署</a>，xenserver7底层虽然是CentOS7但是部署上还是有点小坑的，这里需要特别感谢leon和eden大师的大力协助,本文共分为三大部分：ceph部署、iscsi配置、开关机脚本部分。</p>
@@ -460,49 +487,22 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
   
 
 
-<!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-    <span class="btn-bg"></span>
-    <span class="btn-text">文章导航</span>
-    </p>
-    <div id="toc-article" class="toc-article">
-        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-        <strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ceph部署"><span class="toc-number">2.</span> <span class="toc-text">ceph部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#环境"><span class="toc-number">2.1.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境清理"><span class="toc-number">2.2.</span> <span class="toc-text">环境清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#yum源及ceph的安装"><span class="toc-number">2.3.</span> <span class="toc-text">yum源及ceph的安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装ceph客户端"><span class="toc-number">2.4.</span> <span class="toc-text">安装ceph客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关闭防火墙"><span class="toc-number">2.5.</span> <span class="toc-text">关闭防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步时间："><span class="toc-number">2.6.</span> <span class="toc-text">同步时间：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#免秘钥登陆和添加host"><span class="toc-number">2.7.</span> <span class="toc-text">免秘钥登陆和添加host</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改dom0内存大小"><span class="toc-number">2.8.</span> <span class="toc-text">修改dom0内存大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始部署"><span class="toc-number">2.9.</span> <span class="toc-text">开始部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装ceph-deploy"><span class="toc-number">2.9.1.</span> <span class="toc-text">安装ceph-deploy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署monitor"><span class="toc-number">2.9.2.</span> <span class="toc-text">部署monitor:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署OSD："><span class="toc-number">2.9.3.</span> <span class="toc-text">部署OSD：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建RBD"><span class="toc-number">2.9.4.</span> <span class="toc-text">创建RBD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#config推送"><span class="toc-number">2.9.5.</span> <span class="toc-text">config推送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mon-amp-osd启动方式"><span class="toc-number">2.9.6.</span> <span class="toc-text">mon&osd启动方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iscsi配置"><span class="toc-number">3.</span> <span class="toc-text">iscsi配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装target"><span class="toc-number">3.1.</span> <span class="toc-text">安装target</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装keepalived（可选）"><span class="toc-number">3.2.</span> <span class="toc-text">安装keepalived（可选）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开关机脚本"><span class="toc-number">4.</span> <span class="toc-text">开关机脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关机脚本"><span class="toc-number">4.1.</span> <span class="toc-text">关机脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开机脚本"><span class="toc-number">4.2.</span> <span class="toc-text">开机脚本</span></a></li></ol></li></ol>
-    </div>
-    <script type="text/javascript">
-     function showToc(){
-          var toc_article = document.getElementById("toc-article");
-          var show_toc_btn = document.getElementById("show-toc-btn");
-          toc_article.setAttribute("style","display:block");
-          show_toc_btn.setAttribute("style","display:none");
-         };
-      function showBtn(){
-        var toc_article = document.getElementById("toc-article");
-        var show_toc_btn = document.getElementById("show-toc-btn");
-        toc_article.setAttribute("style","display:none");
-        show_toc_btn.setAttribute("style","display:block");
-        };
-   </script>
-     
-<!-- 目录内容结束 -->
 
 <!-- 网易云跟帖 -->
-<!--   -->
-<!-- <section class="duoshuo" id="comments">  -->
-<!-- <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>  -->
-<!-- <script>						 -->
-<!--  var cloudTieConfig = {				 -->
-<!--    url: "", 						 -->
-<!--    sourceId: "2017/05/31/Xen+Ceph+iscsi/",			 -->
-<!--    productKey: "1d5308078c8e444e9514b7aa10f65fc2",			 -->
-<!--    target: "cloud-tie-wrapper"				 -->
-<!--  };							 -->
-<!-- </script>						 -->
-<!-- <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>	 -->
-<!-- </section>										 -->
-<!-- 										 -->
+  
+<section class="duoshuo" id="comments">  
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>  
+<script>						
+ var cloudTieConfig = {	
+   url: "", 			
+   sourceId: "2017/05/31/Xen+Ceph+iscsi/",		
+   productKey: "1d5308078c8e444e9514b7aa10f65fc2",	
+   target: "cloud-tie-wrapper"	
+ };					
+</script>					
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+</section>						
+								
 
 
 

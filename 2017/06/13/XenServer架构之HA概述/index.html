@@ -6,17 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://quanjm.github.io">
-  <title>Tag: ceph | Quinn&#39;blog</title>
+  <title>Xserver架构之HA概述 | Quinn&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录生活点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Quinn&#39;blog">
-<meta property="og:url" content="http://quanjm.github.io/tags/ceph/index.html">
+  <meta name="description" content="XenServer HA概述　　XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Po">
+<meta name="keywords" content="xenserver,脚本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xserver架构之HA概述">
+<meta property="og:url" content="http://quanjm.github.io/2017/06/13/XenServer架构之HA概述/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
-<meta property="og:description" content="记录生活点滴">
+<meta property="og:description" content="XenServer HA概述　　XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Po">
+<meta property="og:image" content="http://i4.piimg.com/1949/a5714ce8e303ce53.png">
+<meta property="og:image" content="http://i4.piimg.com/1949/79ea5da1bd1230bd.png">
+<meta property="og:updated_time" content="2017-06-13T16:17:58.488Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Quinn&#39;blog">
-<meta name="twitter:description" content="记录生活点滴">
+<meta name="twitter:title" content="Xserver架构之HA概述">
+<meta name="twitter:description" content="XenServer HA概述　　XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Po">
+<meta name="twitter:image" content="http://i4.piimg.com/1949/a5714ce8e303ce53.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -150,36 +155,150 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-XenServer架构之HA概述" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/31/Xen+Ceph+iscsi/" class="archive-article-date">
-  	<time datetime="2017-05-30T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/31/Xen+Ceph+iscsi/">Xen+Ceph+iscsi</a>
+    <h1 class="article-title" itemprop="name">
+      Xserver架构之HA概述
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+<!-- 显示阅读和评论数 -->
+
+<br/>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+<span class="icon-sort"></span>
+<span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+          阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+</span>
+</a>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:#ef7522;font-size:14px;">
+	<span class="icon-comment"></span>
+<!-- 隐藏评论数 -->
+	<span class="join-text" style="color:#ef7522;font-size:14px;">评论数:</span>
+	<span class="join-count">0</span>次
+</a>
+
+
+        
+        <a href="/2017/06/13/XenServer架构之HA概述/" class="archive-article-date">
+  	<time datetime="2017-06-12T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+    <span class="btn-bg"></span>
+    <span class="btn-text">文章导航</span>
+    </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#XenServer-HA概述"><span class="toc-number">1.</span> <span class="toc-text">XenServer HA概述</span></a></li></ol>
+    </div>
+    <script type="text/javascript">
+     function showToc(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:block");
+          show_toc_btn.setAttribute("style","display:none");
+         };
+      function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+     
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="XenServer-HA概述"><a href="#XenServer-HA概述" class="headerlink" title="XenServer HA概述"></a>XenServer HA概述</h1><p>　　XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。<br>　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Pool Master的角色，以便XenServer 资源池能够继续正常的工作。<br><a id="more"></a><br>　　XenServer HA通过多个检测信号机制来定期检查主机。这些检测信号使用存储接口（至检测信号 SR）和网络接口（通过管理接口）进行信号的检测和传递。这两种检测信号路由都可以是多宿（多连接）的，以防止产生误报，从而进一步提高可靠性。<br>　　要实现XenServer HA功能，只要满足以下几个条件：<br>　　（1）虚拟机必须置于共享存储中，例如iSCSI、FC SAN，NFS；<br>　　（2）需要两台以上的XenServer，并且设置了资源池，Citrix最佳实践建议使用3台XenServer及以上时设置HA；<br>　　（3）所有XenServer有静态管理IP地址；<br>　　（4）购买的XenServer版本需要支持HA。  </p>
+<p>　　下图显示了在启用HA的资源池中，前后两个主机之间的网络链路发生故障后，虚拟机所进行的自动迁移过程。<br><img src="http://i4.piimg.com/1949/a5714ce8e303ce53.png" alt="Markdown"></p>
+<p>当启用HA时，池中的所有主机：</p>
+<ul>
+<li>通过网络定期交换心跳消息；</li>
+<li>发送心跳到共享存储设备；</li>
+<li>不断尝试获取共享存储的“Master lock”权限。  </li>
+</ul>
+<p>HA设计就是为了避免一台物理主机损坏出现单点故障，因此需要它消除在出现单点故障后尽可能的不影响资源池的运行和上面虚拟机的运行。</p>
+<ul>
+<li>首先需要找出这些虚拟机是否处在最大的全连接设置状态（以下简称“liveset”状态）;</li>
+<li>如果这些虚拟机不是在最大的全连接状态，那么这些虚拟机就会根据“受防护”的策略进行相应操作（即通过虚拟机管理程序重启）；</li>
+<li>选择Master使用“Master lock”进行锁管理；</li>
+<li>重新启动所有在HA保护下丢失连接的虚拟机。</li>
+<li>通过HA可以更快的恢复资源池运行，因为资源池一旦出现故障，资源池剩余的池成员可能无法应付任何更多的故障，采用HA在故障产生的第一时间进行自动恢复，可以保证有充足的资源应对随时可能下一次故障。</li>
+</ul>
+<p>HA绝不能违反以下安全规则：</p>
+<ul>
+<li>在任何时候必须有一个而且最多只有一个Master。这是因为需要Master来保护VM，同时控制磁盘锁。</li>
+<li>在任何时候一个特定的虚拟机必须有一个特定的实例。这是因为启动同一个VM两次会导致严重的文件系统损坏或崩溃。</li>
+</ul>
+<p>然而HA更加重要的地方还在下面的这些选项里：</p>
+<ul>
+<li>快速检测故障；</li>
+<li>在故障检测中尽量减少误报的数量；</li>
+<li>使故障处理逻辑尽可能可靠。</li>
+</ul>
+<p>当试图在同一时间既需要快速精确又需要安全可靠的时候，实施起来的困难就应运而生了。<br>在描述本文中我们使用下面的术语：  </p>
+<ul>
+<li>fencing：又称I/O防护，指的是从网络和存储中隔离一个主机的行为。一旦主机已经被隔离起来，其上任何虚拟机运行就不可能被第三方检测到并因此而产生相应操作。这意味着这些虚拟机可以安全的在另一个节点上重新启动起来运行而不违反安全规则，并在两个主机上同时运行相同的虚拟机。</li>
+<li>心跳：定期根据预先安排的时间间隔与其他主机交换状态更新。心跳正常的消息主要表明主机还处于活动状态，并且I/O路径均工作正常。</li>
+<li>状态文件：共享磁盘（也称为“仲裁磁盘”）的“心跳”SR被映射为一个块设备并链接到每个主机的Dom 0当作共享磁盘，并作为心跳消息的通道，也可以作为一个资源池的主锁定块磁盘，以防止多台主机违反安全规则（其中一种比较危险的情况也被称为“裂脑”）。</li>
+<li>管理网络：这是Xen API的XML / RPC请求流量，也可用于发送心跳消息网络。</li>
+<li>liveset：每个主机视图包含在由主机认为活动状态即响应XenAPI命令运行并在资源池中被Master标记为resident_on的虚拟机的子集。Liveset子集上的虚拟机被视为是运行在一个安全的主机上的，假如在当主机B出现故障时，主机B此时已经被隔离起来，那么主机B上的Liveset子集虚拟机在不违反任何的安全规则的前提下就需要采取恢复措施（如重新启动虚拟机）。</li>
+<li>正确共享SR：其中SR有shared = true的SR属性；并根据PBD连接到池中的每台主机；而其中每个PBD相关的已currently_attached的字段设置为true。如果VM其磁盘起正确的共享SR上，那么如果主机的内存和网络允许的情况下，允许在任何主机重新启动。</li>
+<li>正确共享网络：有一个PIF将其连接到池中的每个主机并启用该网络;而其中每个的PIF已将currently_attached的字段设置为true。一个VM将主机的VIF连接到适当的主机共享网络，在主机内存和存储允许的情况下允许在任何主机重新启动。</li>
+<li>agile：一个虚拟机的表示状态，即表示虚拟机连接到正确的共享出错率和正确的共享网络中。</li>
+<li>unprotected（无保护）：未受保护的虚拟机，其虚拟机的配置字段ha_always_run设置为false，将永远不会在主机故障的情况下受到HA的保护而重新启动。</li>
+<li>best-effort：处于该状态的虚拟机，在主机出现故障的时候竟可能的在该台主机上进行重新启动，不受HA的策略操作。一个best-effort的虚拟机的配置字段ha_always_run设置为true，ha_restart_priority设置为best-effort。一个best-effort的虚拟机如果处于（生存法则1）那么在主机出现故障时，虚拟机将仅被重新启动一次；如果一个best-effort的虚拟机处于（生存法则2）那么在主机出现故障时，虚拟机将会立即重新启动，直到虚拟机重新成功启动为止。</li>
+<li>protected：受HA保护的虚拟机。高虚拟机的配置字段ha_always_run设定为true，且虚拟机配置字段ha_restart_priority没有设置为best-effort。</li>
+<li>生存法则1：该生存法则指在宿主主机生存，因为这些虚拟机无法通过网络获取状态文件。这是xhad守护进程的正常状态。</li>
+<li>生存法则2：描述中的所有主机都丢去了访问状态文件的连接或权利，但主机仍然处于活动状态，并且这些主机都可以在网络上看到对方，即通过网络心跳可以检测到对方的回复。在这种状态下任何进一步的故障都会导致所有节点进行自动隔离，即断开于网路心跳和存储心跳的检测和连接。这种状态是为了应付存储状态文件的存储服务暂时失效的情况。</li>
+</ul>
+<p>　　所有I/O用于监控主机的运行状况（即基于存储和基于网络的心跳）是相互冗余的路径，使得她在单一硬件故障下也正常生存（例如一个开关偶然关掉或拔出电缆）。这个时候根据其中一方心跳的信息维持相应的生存法则，并进行相应报警告知管理员进行修复，以确保环境在不必要的条件下生效HA的安全规则，从而迁移虚拟机并重启。<br>　　同时管理程序监视机制将能保证一旦预先安排的时间段之内通信失效节点的隔离。<br>　　如果一台虚拟机被标记为agile（受保护的），那么该台虚拟机就是完全灵活的，即可以在任何主机上运行。但是其任何形式的附加约束是无法在其他主机上被重现的，比如指定’CPU预留’’。<br>　　资源池假定为对同质CPU的类型和存在的VT / SVM支持(也称为“HVM”)。如果一个池使用–force标志不均匀的主机，这等于是创建了额外的限制，那么在主机故障的时候，有可能导致HA切换策略操作不生效。<br>同时XenServer 会动态维护故障转移方案，该方案详细说明了如果池中的一组主机在任意给定时间出现故障时应执行的操作。其中一个重要概念是允许的主机故障数，该值作为 HA 配置的一部分进行定义。该值确定在不丢失任何服务的情况下所允许的故障数。例如，如果资源池包括 16 台主机，而允许的故障数的设置为 3，则池将计算故障转移方案，该方案允许任意 3 台主机出现故障，并仍然能够在其他主机上重新启动 VM。如果找不到方案，则会认为该池使用过量。方案根据 VM 生命周期操作和移动动态地进行重新计算。如果所做的更改（例如将新 VM 添加到池）导致池使用过量，则会发送警报（通过 XenCenter 或电子邮件）。<br>　　同时在进行虚拟机的重启和迁移的时候，将永远作出关闭或挂起“低”优先级的虚拟机，以保证“较高的”优先级的虚拟机的生存。在设置HA的时候，虚拟机需要分配一个重新启动优先级和一个标志状态，以指示是否应该受到保护以及受到保护的级别。<br>　　启用HA时，尽一切努力保护的虚拟机。如果服务器出现故障运行的虚拟机将迁移到另一台服务器上启动，根据优先级规定，任何受保护的虚拟机将自动启动或停止。重新启动优先级的说明：<br>　　<img src="http://i4.piimg.com/1949/79ea5da1bd1230bd.png" alt="Markdown"></p>
+<p>　　对于那些重要的虚拟机以及处于共存存储上的虚拟机应给予重新启动优先级0。所有次要的虚拟机应分配一个优先级1或2优先级。重新启动优先级是确定在发生故障时，XenServer尝试启动虚拟机的顺序。虚拟机重新启动优先级0，1，2或3，这样可以保证服务器故障的时候，按照预先安排好的既定数量的有序重新启动虚拟机。<br>　　同时XenServer的HA需要特定的容量来保证重新启动计划的成功。如果资源池遇到服务器故障并进入HA切换状态的容量不足以全部切换完毕，剩下受保护的虚拟机将不再保证重新启动。如果这个条件到达时，系统将生成警报。如果一个受保护的虚拟机在服务器发生故障的时候无法重新启动（例如，资源池故障发生时容量已使用完毕，这时再次故障），启动此虚拟机的进一步尝试将根据资源池的容量变化的状态来进行。这意味着，没有资源的情况下HA不会生效，并且切换计划会一直进行尝试。<br>　　还应该说明的是，一旦启用HA，资源池是不可能重新配置管理网络以及用于存储心跳的SR的。同时在启用HA的时候，还存在一个HA配置数据库，该数据库配置为“心跳”的所有更新写入“心跳”SR，以保证主机失败时，虚拟机配置更改不会丢失。  </p>
+<p>本文出自 <a href="http://tasnrh.blog.51cto.com/4141731/1786872" target="_blank" rel="external">我拿流年乱了浮生</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/image/wx.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,29 +308,132 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ceph</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://quanjm.github.io/2017/06/13/XenServer架构之HA概述/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/06/13/Xenserver存储健康检查/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Xserver存储关系和健康检查
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/06/10/zabbix邮件脚本/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">zabbix邮件脚本</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="XenServer架构之HA概述" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
+
+
+
+<!-- 网易云跟帖 -->
+  
+<section class="duoshuo" id="comments">  
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>  
+<script>						
+ var cloudTieConfig = {	
+   url: "", 			
+   sourceId: "2017/06/13/XenServer架构之HA概述/",		
+   productKey: "1d5308078c8e444e9514b7aa10f65fc2",	
+   target: "cloud-tie-wrapper"	
+ };					
+</script>					
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+</section>						
+								
+
 
 
           </div>
@@ -244,9 +466,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

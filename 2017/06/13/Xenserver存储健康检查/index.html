@@ -6,17 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://quanjm.github.io">
-  <title>Tag: ceph | Quinn&#39;blog</title>
+  <title>Xserver存储关系和健康检查 | Quinn&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录生活点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Quinn&#39;blog">
-<meta property="og:url" content="http://quanjm.github.io/tags/ceph/index.html">
+  <meta name="description" content="前言本部分介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。">
+<meta name="keywords" content="xenserver,脚本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xserver存储关系和健康检查">
+<meta property="og:url" content="http://quanjm.github.io/2017/06/13/Xenserver存储健康检查/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
-<meta property="og:description" content="记录生活点滴">
+<meta property="og:description" content="前言本部分介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。">
+<meta property="og:image" content="http://i2.muimg.com/1949/7bb15981f1138891.png">
+<meta property="og:image" content="http://i4.piimg.com/1949/0a3c9151366474f7.png">
+<meta property="og:image" content="http://i4.piimg.com/1949/acf8d9a93f5b5411.png">
+<meta property="og:image" content="http://i4.piimg.com/1949/ccd63fa21b8c4cf0.png">
+<meta property="og:image" content="http://i1.buimg.com/1949/8abe6af798794d75.png">
+<meta property="og:updated_time" content="2017-06-13T16:17:58.531Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Quinn&#39;blog">
-<meta name="twitter:description" content="记录生活点滴">
+<meta name="twitter:title" content="Xserver存储关系和健康检查">
+<meta name="twitter:description" content="前言本部分介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。">
+<meta name="twitter:image" content="http://i2.muimg.com/1949/7bb15981f1138891.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -150,36 +158,128 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Xenserver存储健康检查" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/31/Xen+Ceph+iscsi/" class="archive-article-date">
-  	<time datetime="2017-05-30T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/31/Xen+Ceph+iscsi/">Xen+Ceph+iscsi</a>
+    <h1 class="article-title" itemprop="name">
+      Xserver存储关系和健康检查
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+<!-- 显示阅读和评论数 -->
+
+<br/>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+<span class="icon-sort"></span>
+<span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+          阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+</span>
+</a>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:#ef7522;font-size:14px;">
+	<span class="icon-comment"></span>
+<!-- 隐藏评论数 -->
+	<span class="join-text" style="color:#ef7522;font-size:14px;">评论数:</span>
+	<span class="join-count">0</span>次
+</a>
+
+
+        
+        <a href="/2017/06/13/Xenserver存储健康检查/" class="archive-article-date">
+  	<time datetime="2017-06-12T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+    <span class="btn-bg"></span>
+    <span class="btn-text">文章导航</span>
+    </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#存储概述"><span class="toc-number">1.1.</span> <span class="toc-text">存储概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#存储库-SR"><span class="toc-number">1.1.1.</span> <span class="toc-text">存储库 (SR)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟磁盘映像-VDI"><span class="toc-number">1.1.2.</span> <span class="toc-text">虚拟磁盘映像 (VDI)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#物理块设备-PBD"><span class="toc-number">1.1.3.</span> <span class="toc-text">物理块设备 (PBD)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟块设备-VBD"><span class="toc-number">1.1.4.</span> <span class="toc-text">虚拟块设备 (VBD)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#存储对象摘要"><span class="toc-number">1.2.</span> <span class="toc-text">存储对象摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-number">1.3.</span> <span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SR"><span class="toc-number">1.3.1.</span> <span class="toc-text">SR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VDI"><span class="toc-number">1.3.2.</span> <span class="toc-text">VDI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VBD"><span class="toc-number">1.3.3.</span> <span class="toc-text">VBD</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脚本"><span class="toc-number">1.4.</span> <span class="toc-text">脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#展示效果"><span class="toc-number">1.4.1.</span> <span class="toc-text">展示效果</span></a></li></ol></li></ol></li></ol>
+    </div>
+    <script type="text/javascript">
+     function showToc(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:block");
+          show_toc_btn.setAttribute("style","display:none");
+         };
+      function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+     
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本部分介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。  </p>
+<a id="more"></a>
+<h2 id="存储概述"><a href="#存储概述" class="headerlink" title="存储概述"></a>存储概述</h2><h3 id="存储库-SR"><a href="#存储库-SR" class="headerlink" title="存储库 (SR)"></a>存储库 (SR)</h3><p>存储库 (SR) 是一个特定存储目标，用于存储虚拟机 (VM) 虚拟磁盘映像 (VDI)。VDI 是一个表示虚拟硬盘<br>(HDD) 的存储抽象。<br>SR  具有对本地连接的  IDE、SATA、SCSI  和  SAS  驱动器和远程连接的  iSCSI、NFS、SAS<br>和光纤通道的内置支持，因而非常灵活。SR  和  VDI  抽象允许在支持高级存储功能（如精简置<br>备、VDI  快照和快速克隆）的存储目标上提供这些功能。对于本身不直接支持高级操作的存储子系统，会<br>根据实现这些功能的 Microsoft 虚拟硬盘 (VHD) 规范提供软件堆栈。<br>SR 命令提供用于创建、销毁、克隆、连接、查找它们包含的各个 VDI 及调整这些 VDI 大小的操作。<br>存储库是一个永久性的磁盘上数据结构。对于使用基本块设备的 SR 类型，创建新 SR 的过程都包括清除指<br>定存储目标上的所有现有数据。其他存储类型（如 NFS）则会在与现有 SR 平行的存储阵列上创建一个新<br>容器。<br>每台 XenServer 主机可以同时使用多个 SR 和不同的 SR 类型。可以在主机之间共享这些 SR，也可以将其<br>专用于特定主机。共享存储会加入一个已定义的资源池，并由该池内的多台主机共用。共享 SR 必须可由每<br>台主机通过网络访问。单个资源池中的所有主机必须至少有一个共用的共享 SR。</p>
+<h3 id="虚拟磁盘映像-VDI"><a href="#虚拟磁盘映像-VDI" class="headerlink" title="虚拟磁盘映像 (VDI)"></a>虚拟磁盘映像 (VDI)</h3><p>虚拟磁盘映像 (VDI) 是一个表示虚拟硬盘 (HDD) 的存储抽象。VDI 是 XenServer 中的虚拟化存储的基本单<br>元。VDI 是磁盘上持久对象，独立于 XenServer 主机而存在。用于管理 VDI 的 CLI 操作在第 4.23 节 “VDI 命<br>令”中说明。数据在磁盘上的实际表现形式不同于 SR 类型，并通过针对每个 SR 的专用存储插件界面（称<br>为 SM API）来管理。</p>
+<h3 id="物理块设备-PBD"><a href="#物理块设备-PBD" class="headerlink" title="物理块设备 (PBD)"></a>物理块设备 (PBD)</h3><p>物理块设备表示物理服务器与连接的 SR 之间的接口。PBD 是连接器对象，允许将给定 SR 映射到<br>XenServer 主机。PBD 存储一些设备配置字段，用于与给定的存储目标进行连接和交互。例如，NFS 设备<br>配置包括 NFS 服务器的 IP 地址和 XenServer 主机装载的关联路径。PBD 对象管理给定 SR 与给定<br>XenServer 主机之间的运行时连接。与 PBD 相关的 CLI 操作在第 4.13 节 “PBD 命令”中介绍。</p>
+<h3 id="虚拟块设备-VBD"><a href="#虚拟块设备-VBD" class="headerlink" title="虚拟块设备 (VBD)"></a>虚拟块设备 (VBD)</h3><p>虚拟块设备是连接器对象（与上述的 PBD 类似），可用于在 VDI 和 VM 之间进行映射。除了作为 VDI 和<br>VM 之间的连接（也称为插入）机制外，VBD 还可用于微调给定 VDI 的 QoS（服务质量）、统计数据和可<br>引导性等相关参数。与 VBD 相关的 CLI 操作在第 4.22 节 “VBD 命令”中介绍。</p>
+<h2 id="存储对象摘要"><a href="#存储对象摘要" class="headerlink" title="存储对象摘要"></a>存储对象摘要</h2><p><img src="http://i2.muimg.com/1949/7bb15981f1138891.png" alt="Markdown">   </p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="SR"><a href="#SR" class="headerlink" title="SR"></a>SR</h3><p>定义了一个名为存储库 (SR) 的容器来描述存储虚拟磁盘映像 (VDI) 的特定存储目标。SR 具有对本地连接的 IDE、SATA、SCSI 和 SAS驱动器和远程连接的 iSCSI、NFS、SAS 和光纤通道的内置支持，因而非常灵活。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[root@test3 xen]# xe sr-list</div><div class="line">……</div><div class="line">uuid ( RO)                : 269b271b-3149-7cc0-6a97-e826b9e0e05c</div><div class="line">          name-label ( RW): isofile</div><div class="line">    name-description ( RW): SMB ISO Library [\\192.168.9.99\IsoFile]</div><div class="line">                host ( RO): &lt;shared&gt;</div><div class="line">                type ( RO): iso</div><div class="line">        content-type ( RO): iso</div><div class="line"></div><div class="line"></div><div class="line">uuid ( RO)                : f5d2b16c-b90d-ac7f-53de-6ecc6892f3ec</div><div class="line">          name-label ( RW): 10.2.2.3/image01</div><div class="line">    name-description ( RW): iSCSI SR [10.0.0.3 (iqn.gstarcloud:image01; LUN 1: beaf11: 1024 GB (IET))]</div><div class="line">                host ( RO): &lt;shared&gt;</div><div class="line">                type ( RO): lvmoiscsi</div><div class="line">        content-type ( RO):</div><div class="line">……</div></pre></td></tr></table></figure></p>
+<p><img src="http://i4.piimg.com/1949/0a3c9151366474f7.png" alt="Markdown"></p>
+<p>结合图形，不难理解，所谓的SR就是一个存储仓库，里面存储了很多的ISO文件，你可以利用这些ISO文件来存储东西，又或者当做存储虚拟机文件的仓库，存储创建的VM。</p>
+<h3 id="VDI"><a href="#VDI" class="headerlink" title="VDI"></a>VDI</h3><p>虚拟磁盘映像是显示给 VM 的存储抽象，VDI 是 XenServer 中的虚拟化存储的基本单元。下面我们看一下“10.2.2.3/image01”这个SR存储库中有哪些VDI，即VDI是包含在SR中的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">[root@test3 xen]#  xe vdi-list sr-uuid=f5d2b16c-b90d-ac7f-53de-6ecc6892f3ec</div><div class="line">……</div><div class="line"></div><div class="line">uuid ( RO)                : f681c1b9-5ddb-4002-8c56-8ebdcdaf448b</div><div class="line">          name-label ( RW): 0517-01-clone-of-0517-baseDisk</div><div class="line">    name-description ( RW): 由模板设置程序创建</div><div class="line">             sr-uuid ( RO): f5d2b16c-b90d-ac7f-53de-6ecc6892f3ec</div><div class="line">        virtual-size ( RO): 53687091200</div><div class="line">            sharable ( RO): false</div><div class="line">           read-only ( RO): false</div><div class="line"></div><div class="line">uuid ( RO)                : e79dfbaa-9c7a-41ab-ba4e-31d3ee044978</div><div class="line">           name-label ( RW): 0517-01_IdentityDisk</div><div class="line">     name-description ( RW):</div><div class="line">              sr-uuid ( RO): f5d2b16c-b90d-ac7f-53de-6ecc6892f3ec</div><div class="line">         virtual-size ( RO): 16777216</div><div class="line">             sharable ( RO): false</div><div class="line">            read-only ( RO): false</div><div class="line"></div><div class="line">……</div></pre></td></tr></table></figure>
+<p>10.2.2.3/image01”这个SR所包含的VDI截图如下：   </p>
+<p><img src="http://i4.piimg.com/1949/acf8d9a93f5b5411.png" alt="Markdown">     </p>
+<p>由截图不难看出，所谓的VDI就是里面的ISO文件或虚拟机的硬盘文件。</p>
+<h3 id="VBD"><a href="#VBD" class="headerlink" title="VBD"></a>VBD</h3><p>虚拟块设备是连接器对象（与上述的 PBD 类似），可用于在 VDI 和 VM 之间进行映射。VBD 还可用于微调给定 VDI 的 QoS（服务质量）、统计数据和可引导性等相关参数。<br>上文中讲述的VDI只是一些ISO文件或虚拟机的硬盘文件，这些文件如果单独放在一起是没有任何价值的。正如描述中的那样，VBD是用在VDI和VM之间的映射，如果没了这层映射，光有VDI也是不行的。<br>利用xe命令查看“UCA-VM-10.24”这个主机含有哪些VBD，首先查看“0517-01”的UUID号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[root@test3 xen]#  xe vm-list name-label=0517-01</div><div class="line">uuid ( RO)           : 55c69f5e-7858-53ed-f5ae-5cc6776fd0a5</div><div class="line">     name-label ( RW): 0517-01</div><div class="line">    power-state ( RO): running</div></pre></td></tr></table></figure>
+<p>再查看VBD</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">[root@test3 xen]# xe vbd-list vm-uuid=55c69f5e-7858-53ed-f5ae-5cc6776fd0a5</div><div class="line">uuid ( RO)             : 5c5a4486-2630-950f-49de-a9e4d05c765e</div><div class="line">          vm-uuid ( RO): 55c69f5e-7858-53ed-f5ae-5cc6776fd0a5</div><div class="line">    vm-name-label ( RO): 0517-01</div><div class="line">         vdi-uuid ( RO): e79dfbaa-9c7a-41ab-ba4e-31d3ee044978</div><div class="line">            empty ( RO): false</div><div class="line">           device ( RO): xvdb</div><div class="line"></div><div class="line"></div><div class="line">uuid ( RO)             : df675aa7-64b2-de7d-f8b7-e27bdb67b0a3</div><div class="line">          vm-uuid ( RO): 55c69f5e-7858-53ed-f5ae-5cc6776fd0a5</div><div class="line">    vm-name-label ( RO): 0517-01</div><div class="line">         vdi-uuid ( RO): 18700ff6-eab5-4f54-a567-635c5f91aa67</div><div class="line">            empty ( RO): false</div><div class="line">           device ( RO): xvdc</div><div class="line"></div><div class="line"></div><div class="line">uuid ( RO)             : 6a9b1c09-e3d9-7397-eb4d-e52ca6b1972d</div><div class="line">          vm-uuid ( RO): 55c69f5e-7858-53ed-f5ae-5cc6776fd0a5</div><div class="line">    vm-name-label ( RO): 0517-01</div><div class="line">         vdi-uuid ( RO): f681c1b9-5ddb-4002-8c56-8ebdcdaf448b</div><div class="line">            empty ( RO): false</div><div class="line">           device ( RO): xvda</div><div class="line"></div><div class="line"></div><div class="line">uuid ( RO)             : a5622c97-1a5b-237b-e99a-0b6857e6cf45</div><div class="line">          vm-uuid ( RO): 55c69f5e-7858-53ed-f5ae-5cc6776fd0a5</div><div class="line">    vm-name-label ( RO): 0517-01</div><div class="line">         vdi-uuid ( RO): 0f7e6f50-af33-4e5f-94b8-f0a35cb490be</div><div class="line">            empty ( RO): false</div><div class="line">           device ( RO): xvdd</div></pre></td></tr></table></figure>
+<p><img src="http://i4.piimg.com/1949/ccd63fa21b8c4cf0.png" alt="Markdown"><br>可以看出上面的VBD其实将上一节中的VDI和0517-01这个虚拟机做了个映射（相当于VM内部的C盘\D盘\E盘）。也就是说如果我将上图中的disk1这个VDI attach到另一个主机如SQL Server，则VDI不变，而你用xe vbd-list 这个命令查看0517-01这个主机时，会发现少了一个VBD，而SQL Server主机会多了一个VBD。</p>
+<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><p>打印出Xenserver集群中所有宿主机的SR状态（lvmoiscsi，不包含本地存储）以及VM和存储状态信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"></div><div class="line">#检查并展示xenserver（lvmoiscsi）存储连接状态。</div><div class="line"></div><div class="line">function _echo_green()</div><div class="line">&#123;</div><div class="line">    local message=$1</div><div class="line">    echo -e &quot;\e[32m$message\033[0m&quot;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function _echo_red()</div><div class="line">&#123;</div><div class="line">    local message=$1</div><div class="line">    echo -e &quot;\e[31m$message\033[0m&quot;</div><div class="line">&#125;</div><div class="line">function _echo_yellow()</div><div class="line">&#123;</div><div class="line">    local message=$1</div><div class="line">    echo -e &quot;\e[33m$message\033[0m&quot;</div><div class="line">&#125;</div><div class="line">function _echo_cyan()</div><div class="line">&#123;</div><div class="line">    local message=$1</div><div class="line">    echo -e &quot;\e[36m$message\033[0m&quot;</div><div class="line">&#125;</div><div class="line">function _echo_info()</div><div class="line">&#123;</div><div class="line">    echo $1</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">function pbd_info()</div><div class="line">&#123;</div><div class="line">    local srid=$1</div><div class="line">    pbdlist=$(xe pbd-list sr-uuid=$srid | grep uuid | awk &apos;&#123;print $5&#125;&apos;)</div><div class="line">    for pbdid in $pbdlist</div><div class="line">    do</div><div class="line">        pbdhostid=$(xe pbd-list  uuid=$pbdid | grep -w &quot;host-uuid&quot; | awk &apos;&#123;print $4&#125;&apos;)</div><div class="line">        pbdconfig=$(xe pbd-list  uuid=$pbdid | grep -w &quot;device-config&quot; |  awk -F&quot;): &quot; &apos;&#123;print $2&#125;&apos;)</div><div class="line">        pbdstatus=$(xe pbd-list  uuid=$pbdid | grep -w &quot;currently-attached&quot; | awk &apos;&#123;print $4&#125;&apos;)</div><div class="line">        local hostname=$(xe host-list uuid=$pbdhostid | grep -w &quot;name-label&quot; | awk &apos;&#123;print $4&#125;&apos;)</div><div class="line"></div><div class="line">        if [ &quot;X$pbdstatus&quot; == &quot;Xtrue&quot; ]; then</div><div class="line">            _echo_green &quot;   | 【PBD】 ==&gt; $pbdid 【状态】:$pbdstatus 【主机】:$hostname $pbdconfig&quot;</div><div class="line">        elif [ &quot;X$pbdstatus&quot; == &quot;Xfalse&quot; ]; then</div><div class="line">            _echo_red &quot;   | 【PBD】 ==&gt; $pbdid 【状态】:$pbdstatus 【主机】:$hostname $pbdconfig&quot;</div><div class="line">        fi</div><div class="line">    done   </div><div class="line">&#125;</div><div class="line"></div><div class="line">function sr_info()</div><div class="line">&#123;</div><div class="line">    srlist=$(xe sr-list type=lvmoiscsi | grep uuid | awk &apos;&#123;print $5&#125;&apos;)</div><div class="line">    for srid in $srlist</div><div class="line">    do</div><div class="line">        srname=$(xe sr-list uuid=$srid | grep -w &quot;name-label&quot; | awk &apos;&#123;print $4&#125;&apos; )</div><div class="line">        srnamedesc=$(xe sr-list uuid=$srid | grep -w &quot;name-description&quot; | awk -F&quot;): &quot; &apos;&#123;print $2&#125;&apos;)</div><div class="line">        _echo_info &quot;【SR】 ==&gt; $srid  【SRname】:$srname   $srnamedesc&quot;</div><div class="line">        pbd_info $srid</div><div class="line">    done</div><div class="line">&#125;</div><div class="line"></div><div class="line">#function vdiinfo()</div><div class="line">#&#123;</div><div class="line">#    local srid=$1</div><div class="line">#    vdilist=$(xe vdi-list sr-uuid=$srid  | grep uuid | awk &apos;&#123;print $5&#125;&apos;)</div><div class="line">#    for vdiid in $vdilist</div><div class="line">#    do</div><div class="line">#        vdisize=$(xe vdi-list uuid=$vdiid | grep -w &quot;virtual-size&quot; | awk &apos;&#123;print $4&#125;&apos; )</div><div class="line">#        vdiname=$(xe vdi-list uuid=$vdiid | grep -w &quot;name-label&quot; | awk &apos;&#123;print $4&#125;&apos; )</div><div class="line">#        _echo_info &quot;    |vdi ==&gt; $vdiid SIZE=$vdisize NAME:$vdiname&quot;</div><div class="line">#    done</div><div class="line">#&#125;</div><div class="line"></div><div class="line"></div><div class="line">function vm_info()</div><div class="line">&#123;</div><div class="line">    vmlist=$(xe vm-list | grep uuid | awk &apos;&#123;print $5&#125;&apos;)</div><div class="line">    for vmid in $vmlist</div><div class="line">    do</div><div class="line">        vmname=$(xe vm-list uuid=$vmid | grep -w &quot;name-label&quot; | awk &apos;&#123;print $4&#125;&apos; )</div><div class="line">        vmstatus=$(xe vm-list uuid=$vmid | grep -w &quot;power-state&quot; | awk &apos;&#123;print $4&#125;&apos; )</div><div class="line">        vbdlist=$(xe vbd-list vm-uuid=$vmid | grep -w &quot;^uuid&quot; | awk &apos;&#123;print $5&#125;&apos; )</div><div class="line">        _echo_info &quot;【VM名字】:$vmname 【VMID】:$vmid 【VM运行状态】:$vmstatus&quot;</div><div class="line">        for vbdid in $vbdlist</div><div class="line">        do</div><div class="line">            vdiid=$(xe vbd-list uuid=$vbdid | grep -w &quot;vdi-uuid&quot; | awk -F&quot;RO): &quot; &apos;&#123;print $2&#125;&apos;)</div><div class="line">            vbdempty=$(xe vbd-list uuid=$vbdid | grep -w &quot;empty&quot; | awk &apos;&#123;print $4&#125;&apos; )</div><div class="line">            vbddevice=$(xe vbd-list uuid=$vbdid | grep -w &quot;device&quot; | awk &apos;&#123;print $4&#125;&apos; )</div><div class="line">            local srid=$(xe vdi-list uuid=$vdiid |grep -w &quot;sr-uuid&quot; |awk  &apos;&#123;print $4&#125;&apos;)</div><div class="line">            local srname=$(xe sr-list uuid=$srid | grep -w &quot;name-label&quot; | awk &apos;&#123;print $4&#125;&apos; )</div><div class="line">            if [ &quot;X$vdiid&quot; == &quot;X&lt;not in database&gt;&quot; -a &quot;X$vmstatus&quot; == &quot;Xrunning&quot; ] ; then</div><div class="line">		_echo_red &quot;     |-&gt;【SRID】:$srid 【srname】=$srname&quot;</div><div class="line">                _echo_red &quot;        【VBDID】:$vbdid  【VBDempty】:$vbdempty 【DEVICE】:$vbddevice ==&gt; 【VDIID】:$vdiid&quot;</div><div class="line">            elif [ &quot;X$vdiid&quot; == &quot;X&lt;not in database&gt;&quot; -a &quot;X$vmstatus&quot; == &quot;Xhalted&quot; ] ; then</div><div class="line">		_echo_cyan &quot;     |-&gt;【SRID】:$srid 【srname】=$srname&quot;</div><div class="line">                _echo_cyan &quot;        【VBDID】:$vbdid  【VBDempty】:$vbdempty 【DEVICE】:$vbddevice ==&gt; 【VDIID】:$vdiid&quot;</div><div class="line">            else</div><div class="line">		_echo_green &quot;     |-&gt;【SRID】:$srid 【srname】=$srname&quot;</div><div class="line">                _echo_green &quot;        【VBDID】:$vbdid  【VBDempty】:$vbdempty 【DEVICE】:$vbddevice ==&gt; 【VDIID】:$vdiid&quot;</div><div class="line">            fi</div><div class="line">        done</div><div class="line">    done</div><div class="line">&#125;</div><div class="line"></div><div class="line">sr_info</div><div class="line">echo &quot; &quot;</div><div class="line">echo &quot; &quot;</div><div class="line">vm_info</div><div class="line"></div><div class="line">#echo &quot; &quot;</div><div class="line">#_echo_yellow &quot;iscsi的发现记录如下：&quot;</div><div class="line">#echo &quot;`iscsiadm -m node`&quot;</div><div class="line">#echo &quot; &quot;</div><div class="line">#_echo_yellow &quot;当前登陆的target如下：&quot;</div><div class="line">#echo &quot;`iscsiadm -m session`&quot;</div><div class="line">#echo &quot; &quot;</div><div class="line">#_echo_yellow &quot;iscsi server提供的Target及连接状态如下：&quot;</div><div class="line">#tgtadm --lld iscsi --op show --mode target |grep iqn</div></pre></td></tr></table></figure>
+<h3 id="展示效果"><a href="#展示效果" class="headerlink" title="展示效果"></a>展示效果</h3><p><img src="http://i1.buimg.com/1949/8abe6af798794d75.png" alt="Markdown"></p>
+<p>图中可以看到集群中有test4、test3两台物理机，分别连接10.2.2.3/image01、10.2.2.3/image02两块SR，VM：AD-client-w7使用的是本地存储 状态为halted，共有两块虚拟磁盘等。<br>这些数据能够在VM或者存储系统异常的时候提供重要的参考信息，在修复的时候起到很重要的作用，后文《启动VM报错修复》中详讲。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/image/wx.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -189,29 +289,132 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ceph</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://quanjm.github.io/2017/06/13/Xenserver存储健康检查/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/06/13/Xenserver启动VM报错修复/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Xserver启动VM异常状态修复
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2017/06/13/XenServer架构之HA概述/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Xserver架构之HA概述</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="Xenserver存储健康检查" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
+  
+
+
+
+<!-- 网易云跟帖 -->
+  
+<section class="duoshuo" id="comments">  
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>  
+<script>						
+ var cloudTieConfig = {	
+   url: "", 			
+   sourceId: "2017/06/13/Xenserver存储健康检查/",		
+   productKey: "1d5308078c8e444e9514b7aa10f65fc2",	
+   target: "cloud-tie-wrapper"	
+ };					
+</script>					
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+</section>						
+								
+
 
 
           </div>
@@ -244,9 +447,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

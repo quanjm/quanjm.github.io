@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://quanjm.github.io/2017/06/13/Xenserver启动VM报错修复/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
 <meta property="og:description" content="文章一    　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可">
-<meta property="og:updated_time" content="2017-06-14T04:34:13.428Z">
+<meta property="og:updated_time" content="2017-06-14T04:58:27.452Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XenServer启动VM异常状态修复">
 <meta name="twitter:description" content="文章一    　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可">
@@ -182,7 +182,7 @@
 
         
         <a href="/2017/06/13/Xenserver启动VM报错修复/" class="archive-article-date">
-  	<time datetime="2017-06-12T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
+  	<time datetime="2017-06-12T18:12:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
 </a>
         
       </header>
@@ -390,6 +390,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/06/13/XenServer架构之HA概述/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          XenServer架构之HA概述
+        
+      </div>
+    </a>
   
   
     <a href="/2017/06/13/Xenserver存储健康检查/" id="article-nav-older" class="article-nav-link-wrap">

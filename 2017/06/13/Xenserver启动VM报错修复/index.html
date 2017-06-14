@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://quanjm.github.io">
   <title>Xserver启动VM异常状态修复 | Quinn&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="文章一　　在使用共享存储正常情况下关机后的VM可以在集群中的任意宿主机上启动。在将宿主关机的时候为了保护里面的VM，集群会将宿主所在的VM进行逐个关机（如果开了HA还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，就会照成关机后VM消失的情况，此时查看VM状态还会是running，被关机后的VM在启动时也可能会出现VID不可用的错误。">
-<meta name="keywords" content="xenserver,脚本">
+  <meta name="description" content="文章一    　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可">
+<meta name="keywords" content="xenserver,脚本,存储">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Xserver启动VM异常状态修复">
 <meta property="og:url" content="http://quanjm.github.io/2017/06/13/Xenserver启动VM报错修复/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
-<meta property="og:description" content="文章一　　在使用共享存储正常情况下关机后的VM可以在集群中的任意宿主机上启动。在将宿主关机的时候为了保护里面的VM，集群会将宿主所在的VM进行逐个关机（如果开了HA还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，就会照成关机后VM消失的情况，此时查看VM状态还会是running，被关机后的VM在启动时也可能会出现VID不可用的错误。">
-<meta property="og:updated_time" content="2017-06-13T16:17:58.508Z">
+<meta property="og:description" content="文章一    　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可">
+<meta property="og:updated_time" content="2017-06-14T04:09:25.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xserver启动VM异常状态修复">
-<meta name="twitter:description" content="文章一　　在使用共享存储正常情况下关机后的VM可以在集群中的任意宿主机上启动。在将宿主关机的时候为了保护里面的VM，集群会将宿主所在的VM进行逐个关机（如果开了HA还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，就会照成关机后VM消失的情况，此时查看VM状态还会是running，被关机后的VM在启动时也可能会出现VID不可用的错误。">
+<meta name="twitter:description" content="文章一    　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可">
   
   
     <link rel="icon" href="/favicon.png">
@@ -188,71 +188,86 @@
       </header>
     
 <!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-    <span class="btn-bg"></span>
-    <span class="btn-text">文章导航</span>
-    </p>
-    <div id="toc-article" class="toc-article">
-        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-        <strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#文章一"><span class="toc-number">1.</span> <span class="toc-text">文章一</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文章二"><span class="toc-number">2.</span> <span class="toc-text">文章二</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文章三"><span class="toc-number">3.</span> <span class="toc-text">文章三</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#脚本"><span class="toc-number">4.</span> <span class="toc-text">脚本</span></a></li></ol>
-    </div>
-    <script type="text/javascript">
-     function showToc(){
-          var toc_article = document.getElementById("toc-article");
-          var show_toc_btn = document.getElementById("show-toc-btn");
-          toc_article.setAttribute("style","display:block");
-          show_toc_btn.setAttribute("style","display:none");
-         };
-      function showBtn(){
-        var toc_article = document.getElementById("toc-article");
-        var show_toc_btn = document.getElementById("show-toc-btn");
-        toc_article.setAttribute("style","display:none");
-        show_toc_btn.setAttribute("style","display:block");
-        };
-   </script>
      
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="文章一"><a href="#文章一" class="headerlink" title="文章一"></a>文章一</h1><p>　　在使用共享存储正常情况下关机后的VM可以在集群中的任意宿主机上启动。在将宿主关机的时候为了保护里面的VM，集群会将宿主所在的VM进行逐个关机（如果开了HA还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，就会照成关机后VM消失的情况，此时查看VM状态还会是running，被关机后的VM在启动时也可能会出现VID不可用的错误。  </p>
+        <p><strong>文章一</strong>   </p>
+<p>　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可用的错误。  </p>
 <a id="more"></a>
 <p>修复方法如下：</p>
-<p>重置VM电源状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-reset-powerstate force=true vm=&lt;vm name&gt;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>重置VM电源状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-reset-powerstate force=true vm=&lt;vm name&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>此时xencenter控制台就该就已经出现了该VM，并且状态为关机。  </p>
-<p>找到此虚拟机对应的Vbd list<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">xe vbd-list vm-name-label=&apos;web-server-001&apos;</div></pre></td></tr></table></figure></p>
-<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">xe vbd-list vm-uuid=aa15aeda-73a1-31c7-7437-c354fd926589</div><div class="line"></div><div class="line">我们看到此虚拟机对应的VDI的</div><div class="line">vdi-uuid ( RO): 9d253ebf-15df-4791-9704-5fb538767732</div><div class="line">vdi-uuid ( RO): 49654b0a-3b32-4a40-b872-747b4dcbefe9</div></pre></td></tr></table></figure></p>
-<p>查看sr-uuid<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xe vdi-list uuid=9d253ebf-15df-4791-9704-5fb538767732</div><div class="line">sr-uuid ( RO): fbbf4411-7a75-6851-d2b5-7c726009286e</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>找到此虚拟机对应的Vbd list</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">xe vbd-list vm-name-label=&apos;web-server-001&apos;</div><div class="line">或   </div><div class="line">xe vbd-list vm-uuid=aa15aeda-73a1-31c7-7437-c354fd926589</div><div class="line">我们看到此虚拟机对应的VDI的</div><div class="line">vdi-uuid ( RO): 9d253ebf-15df-4791-9704-5fb538767732</div><div class="line">vdi-uuid ( RO): 49654b0a-3b32-4a40-b872-747b4dcbefe9</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看sr-uuid</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xe vdi-list uuid=9d253ebf-15df-4791-9704-5fb538767732</div><div class="line">sr-uuid ( RO): fbbf4411-7a75-6851-d2b5-7c726009286e</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xe vdi-list uuid=49654b0a-3b32-4a40-b872-747b4dcbefe9</div><div class="line">sr-uuid ( RO): 3e4877f5-ff07-7069-486e-8dedfb1a6afd</div></pre></td></tr></table></figure>
-<p>Detach此VDI<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xe vdi-forget uuid=&apos;9d253ebf-15df-4791-9704-5fb538767732&apos;</div><div class="line">xe vdi-forget uuid=&apos;49654b0a-3b32-4a40-b872-747b4dcbefe9&apos;</div></pre></td></tr></table></figure></p>
-<p>在重新scan此VDI所在的存储<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xe sr-scan uuid=3e4877f5-ff07-7069-486e-8dedfb1a6afd</div><div class="line">xe sr-scan uuid=fbbf4411-7a75-6851-d2b5-7c726009286e</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>Detach此VDI</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xe vdi-forget uuid=&apos;9d253ebf-15df-4791-9704-5fb538767732&apos;</div><div class="line">xe vdi-forget uuid=&apos;49654b0a-3b32-4a40-b872-747b4dcbefe9&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在重新scan此VDI所在的存储</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xe sr-scan uuid=3e4877f5-ff07-7069-486e-8dedfb1a6afd</div><div class="line">xe sr-scan uuid=fbbf4411-7a75-6851-d2b5-7c726009286e</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>此时通过命令去查看vdi的name-label可能为空，我们通过命令行添加name-label,这样在xencenter中就能够识别到此vdi<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">xe vdi-list uuid=&lt;UUID of the VDI&gt;.</div><div class="line">xe vdi-list uuid=9d253ebf-15df-4791-9704-5fb538767732</div><div class="line">xe vdi-list uuid=49654b0a-3b32-4a40-b872-747b4dcbefe9</div><div class="line"></div><div class="line">xe vdi-param-set uuid=&lt;UUID of the VDI&gt; name-label=&lt;New name label&gt;”. Name-description=&lt;New name description&gt;</div><div class="line">xe vdi-param-set uuid=9d253ebf-15df-4791-9704-5fb538767732 name-label=disk1 name-description=disk1</div><div class="line">xe vdi-param-set uuid=49654b0a-3b32-4a40-b872-747b4dcbefe9 name-label=disk2 name-description=disk2</div></pre></td></tr></table></figure></p>
-<p>登陆xencenter,在对应虚拟机的storage标签中，“attach”之前命名的vdi<br><strong>attach时需要注意顺序 ,加错了就detach。</strong></p>
+<p>登陆xencenter,在对应虚拟机的storage标签中，“attach”之前命名的vdi<br><strong><em>attach时需要注意顺序 ,加错了就detach。</em></strong></p>
 <blockquote>
 <p>Q1：<br> 如果第3步和第4步反了将导致无法查找到sr-uuid,双击xencenter存储，查出所在存储位置,通过xe sr-list 根据name-label，上一行即sr-uuid</p>
 </blockquote>
-<h1 id="文章二"><a href="#文章二" class="headerlink" title="文章二"></a>文章二</h1><p>在XenServer中，碰到VM挂起（hang）的情况，也不是那么少见，而VM长时间挂起，那么很影响心情和后续的操作。   </p>
+<hr>
+<p><strong>文章二</strong></p>
+<p>  在XenServer中，碰到VM挂起（hang）的情况，也不是那么少见，而VM长时间挂起，那么很影响心情和后续的操作。   </p>
 <p>一般情况下，为了关闭VM或者重启VM，我们推荐这样的操作顺序：<br>1.进入到VM内，使用系统的关机或者重启功能<br>2.通过XenCenter的菜单选择ShutDown或者Restart。 虽然这个菜单的实现是通过XenServer tool来控制系统的命令来实现，但是不保证在XenServer Tools工作异常的情况下，导致VM挂起（Hang），而且，这个应该也是VM挂起（XenCenter中VM标志处于黄色状态）的主要原因。<br>3.尝试通过XenCenter菜单的Force Shutdown和Force Restart来强制操作。   </p>
 <p>如果这些操作都进行了以后，VM也长时间处于挂起状态，为了让VM能够关机，或者说是强制关机来重置其状态，我们有以下几种解决方法，这些解决方法的危害会逐渐增加，所以，请按顺序尝试：  </p>
-<p>1.重置VM的电源状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-reset-powerstate force=true vm=&lt;vm name&gt;</div></pre></td></tr></table></figure></p>
-<p>2.重启toolstack<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe-toolstack-restart</div></pre></td></tr></table></figure></p>
-<p>3.destroy domain</p>
+<ul>
+<li><p>重置VM的电源状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-reset-powerstate force=true vm=&lt;vm name&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启toolstack</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe-toolstack-restart</div></pre></td></tr></table></figure>
+</li>
+<li><p>destroy domain</p>
+</li>
+</ul>
 <p>首先获取VM的UUID<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-list name-label=&lt;vm name&gt; params=uuid</div></pre></td></tr></table></figure></p>
 <p>获取VM的Domain ID<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">list_domains | grep &lt;VM-UUID&gt;</div></pre></td></tr></table></figure></p>
 <p>尝试重置hang状态的VM<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/opt/xensource/debug/xenops destroy_domain -domid &lt;vm domain id&gt;</div></pre></td></tr></table></figure></p>
-<p>4.到这里还不行，就可以强制VM进入崩溃状态</p>
+<ul>
+<li>到这里还不行，就可以强制VM进入崩溃状态</li>
+</ul>
 <p>首先获取VM的UUID<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-list name-label=&lt;vm name&gt; params=uuid</div></pre></td></tr></table></figure></p>
 <p>获取VM的Domain ID<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">list_domains | grep &lt;VM-UUID&gt;</div></pre></td></tr></table></figure></p>
 <p>手动触发VM的Crash机制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/lib/xen/bin/crash_guest &lt;domain ID&gt;</div></pre></td></tr></table></figure></p>
 <p>如果连Crash机制都不起作用的情况下，那么就只剩下强制关闭XenServer主机电源一条途径了。   </p>
 <p><strong><em>在Crash VM以后，VM会处于蓝屏状态，这个时候，可以再试试正常的关机或者强制关机命令来关闭虚机。<br>BTW：某些情况下，可能关机等操作会由于某些原因，导致操作延迟，而且取消也会失败，这个时候可能稍微多等一下就OK了。</em></strong></p>
-<h1 id="文章三"><a href="#文章三" class="headerlink" title="文章三"></a>文章三</h1><p>在XenServer中，碰到VM挂起（hang）的情况，虚拟机变成黄色，无法操作。<br> 可以使用如下方法恢复虚拟机状态：<br><strong>重置VM电源状态</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-reset-powerstate force=true vm=&lt;vm name&gt;</div></pre></td></tr></table></figure></p>
-<p><strong>尝试重启toolstack</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe-toolstack-restart</div></pre></td></tr></table></figure></p>
-<p><strong>销毁卡死的VM对应的domain id</strong></p>
+<hr>
+<p><strong>文章三</strong>   </p>
+<p>在XenServer中，碰到VM挂起（hang）的情况，虚拟机变成黄色，无法操作。<br> 可以使用如下方法恢复虚拟机状态：</p>
+<ul>
+<li><p>重置VM电源状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-reset-powerstate force=true vm=&lt;vm name&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>尝试重启toolstack</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe-toolstack-restart</div></pre></td></tr></table></figure>
+</li>
+<li><p>销毁卡死的VM对应的domain id</p>
+</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-list params=uuid name-label=&lt;vm-name&gt;</div></pre></td></tr></table></figure>
 <p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">xe vm-list name-label=&lt;vm name&gt; params=uuid #首先获取VM的UUID</div><div class="line"></div><div class="line">list_domains | grep &lt;VM-UUID&gt;  #获取VM的Domain ID</div><div class="line"></div><div class="line">/opt/xensource/debug/xenops destroy_domain -domid &lt;vm domain id&gt; #尝试重置hang状态的VM</div></pre></td></tr></table></figure></p>
-<p><strong>到这里还不行，就可以强制VM进入崩溃状态</strong><br>首先获取VM的UUID<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-list name-label=&lt;vm name&gt; params=uuid</div></pre></td></tr></table></figure></p>
+<ul>
+<li>到这里还不行，就可以强制VM进入崩溃状态<br>首先获取VM的UUID<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-list name-label=&lt;vm name&gt; params=uuid</div></pre></td></tr></table></figure>
+</li>
+</ul>
 <p>获取VM的Domain ID<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">list_domains | grep &lt;VM-UUID&gt;</div></pre></td></tr></table></figure></p>
 <p>手动触发VM的Crash机制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/lib/xen/bin/crash_guest &lt;domain ID&gt;</div></pre></td></tr></table></figure></p>
 <p>如果还是无法解决，查看主机的日志/var/log/xensource.log是否有异常。</p>
@@ -301,6 +316,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
         		</li>
       		
 		</ul>
@@ -539,6 +558,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">存储</a>
               </li>
             
             <div class="clearfix"></div>

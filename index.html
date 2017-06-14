@@ -178,7 +178,8 @@
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="文章一"><a href="#文章一" class="headerlink" title="文章一"></a>文章一</h1><p>　　在使用共享存储正常情况下关机后的VM可以在集群中的任意宿主机上启动。在将宿主关机的时候为了保护里面的VM，集群会将宿主所在的VM进行逐个关机（如果开了HA还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，就会照成关机后VM消失的情况，此时查看VM状态还会是running，被关机后的VM在启动时也可能会出现VID不可用的错误。  </p>
+        <p><strong>文章一</strong>   </p>
+<p>　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可用的错误。  </p>
         
           <a class="article-more-a" href="/2017/06/13/Xenserver启动VM报错修复/#more">more >></a>
         
@@ -199,6 +200,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
         		</li>
       		
 		</ul>
@@ -276,6 +281,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
         		</li>
       		
 		</ul>
@@ -660,6 +669,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">脚本</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">存储</a>
               </li>
             
             <div class="clearfix"></div>

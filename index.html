@@ -232,6 +232,86 @@
 
 
   
+    <article id="post-fio硬盘测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/15/fio硬盘测试/">fio硬盘测试</a>
+    </h1>
+  
+
+<!-- 显示阅读和评论数 -->
+
+
+        
+        <a href="/2017/06/15/fio硬盘测试/" class="archive-article-date">
+  	<time datetime="2017-06-14T18:46:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-15</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="测试前提"><a href="#测试前提" class="headerlink" title="测试前提"></a>测试前提</h1><p>我们在进行测试时，都会分清楚:  </p>
+<ul>
+<li>测试对象：要区分硬盘、SSD、RAID、SAN、云硬盘等，因为它们有不同的特点  </li>
+<li>测试指标：IOPS和MBPS(吞吐率)，下面会具体阐述  </li>
+<li>测试工具：Linux下常用Fio、dd工具,  Windows下常用<a href="http://www.iometer.org/doc/downloads.html" target="_blank" rel="external">IOMeter</a>   </li>
+<li>测试参数: IO大小，寻址空间，队列深度，读写模式，随机/顺序模式   </li>
+<li>测试方法：也就是测试步骤。   </li>
+<li>测试是为了对比，所以需要定性和定量。在宣布自己的测试结果时，需要说明这次测试的工具、参数、方法，以便于比较。
+        
+          <a class="article-more-a" href="/2017/06/15/fio硬盘测试/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/15/fio硬盘测试/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+<!-- 网易云跟帖 -->
+								
+
+
+
+  
     <article id="post-Pandoc--markdown的好基友" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -464,92 +544,9 @@
 
 
   
-    <article id="post-Xenserver存储健康检查" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/13/Xenserver存储健康检查/">XenServer存储关系和健康检查</a>
-    </h1>
-  
-
-<!-- 显示阅读和评论数 -->
-
-
-        
-        <a href="/2017/06/13/Xenserver存储健康检查/" class="archive-article-date">
-  	<time datetime="2017-06-12T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本部分介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。  </p>
-<h1 id="存储对象概述"><a href="#存储对象概述" class="headerlink" title="存储对象概述"></a>存储对象概述</h1><h2 id="存储库-SR"><a href="#存储库-SR" class="headerlink" title="存储库 (SR)"></a>存储库 (SR)</h2><p>存储库 (SR) 是一个特定存储目标，用于存储虚拟机 (VM) 虚拟磁盘映像 (VDI)。VDI 是一个表示虚拟硬盘(HDD) 的存储抽象。    </p>
-<p>SR具有对本地连接的IDE、SATA、SCSI和SAS驱动器和远程连接的iSCSI、NFS、SAS和光纤通道的内置支持，因而非常灵活。SR和VDI抽象允许在支持高级存储功能（如精简置备、VDI  快照和快速克隆）的存储目标上提供这些功能。对于本身不直接支持高级操作的存储子系统，会根据实现这些功能的 Microsoft 虚拟硬盘 (VHD) 规范提供软件堆栈。<br>
-        
-          <a class="article-more-a" href="/2017/06/13/Xenserver存储健康检查/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/13/Xenserver存储健康检查/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-<!-- 网易云跟帖 -->
-								
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -653,23 +650,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">xenserver</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ceph</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">技巧</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">zabbix</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -681,11 +670,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">markdown</a>
+                <a href="javascript:void(0)" class="js-tag color2">zabbix</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ceph</a>
               </li>
             
             <div class="clearfix"></div>

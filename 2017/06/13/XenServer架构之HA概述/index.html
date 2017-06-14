@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://quanjm.github.io">
-  <title>Xserver架构之HA概述 | Quinn&#39;blog</title>
+  <title>XenServer架构之HA概述 | Quinn&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="XenServer HA概述　　XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Po">
+  <meta name="description" content="XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Pool Master的角色，以">
 <meta name="keywords" content="xenserver,脚本">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Xserver架构之HA概述">
+<meta property="og:title" content="XenServer架构之HA概述">
 <meta property="og:url" content="http://quanjm.github.io/2017/06/13/XenServer架构之HA概述/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
-<meta property="og:description" content="XenServer HA概述　　XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Po">
+<meta property="og:description" content="XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Pool Master的角色，以">
 <meta property="og:image" content="http://i4.piimg.com/1949/a5714ce8e303ce53.png">
 <meta property="og:image" content="http://i4.piimg.com/1949/79ea5da1bd1230bd.png">
-<meta property="og:updated_time" content="2017-06-13T16:17:58.488Z">
+<meta property="og:updated_time" content="2017-06-14T04:34:13.403Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xserver架构之HA概述">
-<meta name="twitter:description" content="XenServer HA概述　　XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Po">
+<meta name="twitter:title" content="XenServer架构之HA概述">
+<meta name="twitter:description" content="XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Pool Master的角色，以">
 <meta name="twitter:image" content="http://i4.piimg.com/1949/a5714ce8e303ce53.png">
   
   
@@ -162,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Xserver架构之HA概述
+      XenServer架构之HA概述
     </h1>
   
 
@@ -191,35 +191,11 @@
       </header>
     
 <!-- 目录内容 -->
-
-    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-    <span class="btn-bg"></span>
-    <span class="btn-text">文章导航</span>
-    </p>
-    <div id="toc-article" class="toc-article">
-        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-        <strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#XenServer-HA概述"><span class="toc-number">1.</span> <span class="toc-text">XenServer HA概述</span></a></li></ol>
-    </div>
-    <script type="text/javascript">
-     function showToc(){
-          var toc_article = document.getElementById("toc-article");
-          var show_toc_btn = document.getElementById("show-toc-btn");
-          toc_article.setAttribute("style","display:block");
-          show_toc_btn.setAttribute("style","display:none");
-         };
-      function showBtn(){
-        var toc_article = document.getElementById("toc-article");
-        var show_toc_btn = document.getElementById("show-toc-btn");
-        toc_article.setAttribute("style","display:none");
-        show_toc_btn.setAttribute("style","display:block");
-        };
-   </script>
      
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="XenServer-HA概述"><a href="#XenServer-HA概述" class="headerlink" title="XenServer HA概述"></a>XenServer HA概述</h1><p>　　XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。<br>　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Pool Master的角色，以便XenServer 资源池能够继续正常的工作。<br><a id="more"></a><br>　　XenServer HA通过多个检测信号机制来定期检查主机。这些检测信号使用存储接口（至检测信号 SR）和网络接口（通过管理接口）进行信号的检测和传递。这两种检测信号路由都可以是多宿（多连接）的，以防止产生误报，从而进一步提高可靠性。<br>　　要实现XenServer HA功能，只要满足以下几个条件：<br>　　（1）虚拟机必须置于共享存储中，例如iSCSI、FC SAN，NFS；<br>　　（2）需要两台以上的XenServer，并且设置了资源池，Citrix最佳实践建议使用3台XenServer及以上时设置HA；<br>　　（3）所有XenServer有静态管理IP地址；<br>　　（4）购买的XenServer版本需要支持HA。  </p>
+        <p>　　XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。<br>　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Pool Master的角色，以便XenServer 资源池能够继续正常的工作。<br><a id="more"></a><br>　　XenServer HA通过多个检测信号机制来定期检查主机。这些检测信号使用存储接口（至检测信号 SR）和网络接口（通过管理接口）进行信号的检测和传递。这两种检测信号路由都可以是多宿（多连接）的，以防止产生误报，从而进一步提高可靠性。<br>　　要实现XenServer HA功能，只要满足以下几个条件：<br>　　（1）虚拟机必须置于共享存储中，例如iSCSI、FC SAN，NFS；<br>　　（2）需要两台以上的XenServer，并且设置了资源池，Citrix最佳实践建议使用3台XenServer及以上时设置HA；<br>　　（3）所有XenServer有静态管理IP地址；<br>　　（4）购买的XenServer版本需要支持HA。  </p>
 <p>　　下图显示了在启用HA的资源池中，前后两个主机之间的网络链路发生故障后，虚拟机所进行的自动迁移过程。<br><img src="http://i4.piimg.com/1949/a5714ce8e303ce53.png" alt="Markdown"></p>
 <p>当启用HA时，池中的所有主机：</p>
 <ul>
@@ -382,7 +358,7 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Xserver存储关系和健康检查
+          XenServer存储关系和健康检查
         
       </div>
     </a>

@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://quanjm.github.io">
-  <title>Tag: xenserver | Quinn&#39;blog</title>
+  <title>Pandoc--markdown的好基友 | Quinn&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录生活点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Quinn&#39;blog">
-<meta property="og:url" content="http://quanjm.github.io/tags/xenserver/index.html">
+  <meta name="description" content="Markdown 是一种轻量级标记语言。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档”。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。由于其编写方便，并且支持代码高亮等功能，尤其受到开发人员的青睐。渐渐成为开发人员写文章、博客等的必备工具。">
+<meta name="keywords" content="Markdown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pandoc--markdown的好基友">
+<meta property="og:url" content="http://quanjm.github.io/2017/06/14/Pandoc--markdown的好基友/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
-<meta property="og:description" content="记录生活点滴">
+<meta property="og:description" content="Markdown 是一种轻量级标记语言。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档”。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。由于其编写方便，并且支持代码高亮等功能，尤其受到开发人员的青睐。渐渐成为开发人员写文章、博客等的必备工具。">
+<meta property="og:image" content="http://i4.piimg.com/1949/5ca844b85ee6345d.png">
+<meta property="og:updated_time" content="2017-06-14T08:40:40.511Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Quinn&#39;blog">
-<meta name="twitter:description" content="记录生活点滴">
+<meta name="twitter:title" content="Pandoc--markdown的好基友">
+<meta name="twitter:description" content="Markdown 是一种轻量级标记语言。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档”。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。由于其编写方便，并且支持代码高亮等功能，尤其受到开发人员的青睐。渐渐成为开发人员写文章、博客等的必备工具。">
+<meta name="twitter:image" content="http://i4.piimg.com/1949/5ca844b85ee6345d.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -150,206 +154,276 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Pandoc--markdown的好基友" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Pandoc--markdown的好基友
+    </h1>
+  
+
+<!-- 显示阅读和评论数 -->
+
+<br/>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+<span class="icon-sort"></span>
+<span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+          阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+</span>
+</a>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:#ef7522;font-size:14px;">
+	<span class="icon-comment"></span>
+<!-- 隐藏评论数 -->
+	<span class="join-text" style="color:#ef7522;font-size:14px;">评论数:</span>
+	<span class="join-count">0</span>次
+</a>
+
+
+        
+        <a href="/2017/06/14/Pandoc--markdown的好基友/" class="archive-article-date">
+  	<time datetime="2017-06-13T18:46:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-14</time>
+</a>
+        
+      </header>
     
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+    <span class="btn-bg"></span>
+    <span class="btn-text">文章导航</span>
+    </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Pandoc的功能"><span class="toc-number">1.</span> <span class="toc-text">Pandoc的功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pandoc的安装"><span class="toc-number">2.</span> <span class="toc-text">Pandoc的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows及Mac-OS-X"><span class="toc-number">2.1.</span> <span class="toc-text">Windows及Mac OS X</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux"><span class="toc-number">2.2.</span> <span class="toc-text">Linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BSD"><span class="toc-number">2.3.</span> <span class="toc-text">BSD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全平台"><span class="toc-number">2.4.</span> <span class="toc-text">全平台</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pandoc的使用"><span class="toc-number">3.</span> <span class="toc-text">Pandoc的使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用命令"><span class="toc-number">4.</span> <span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown转html"><span class="toc-number">4.1.</span> <span class="toc-text">Markdown转html</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown转word"><span class="toc-number">4.2.</span> <span class="toc-text">Markdown转word</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown转pdf"><span class="toc-number">4.3.</span> <span class="toc-text">Markdown转pdf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markdown转在线PPT"><span class="toc-number">4.4.</span> <span class="toc-text">Markdown转在线PPT</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更多其他用法"><span class="toc-number">5.</span> <span class="toc-text">更多其他用法</span></a></li></ol>
+    </div>
+    <script type="text/javascript">
+     function showToc(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:block");
+          show_toc_btn.setAttribute("style","display:none");
+         };
+      function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+     
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　　Markdown 是一种轻量级标记语言。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档”。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。由于其编写方便，并且支持代码高亮等功能，尤其受到开发人员的青睐。渐渐成为开发人员写文章、博客等的必备工具。  </p>
+<a id="more"></a>
+<p>　　我相信大部分开发人员在写个人博客或者技术文章的时候都跟我一样：</p>
+<p>　　在电脑上使用 macdown 、 mou 等软件中使用Markdown语法写内容，然后将写好的文章内容粘贴到支持markdown语法的个人网站中。</p>
+<p>　　但是，除了可以在支持markdown语法的地方可以正常显示之外，在其他任何地方，使用markdown格式写出来的内容的可读性都比较低。今天，给大家推荐一款神器—— Pandoc</p>
+<p>　　Pandoc是由John MacFarlane开发的标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。Pandoc使用Haskell语言编写，以命令行形式实现与用户的交互，可支持多种操作系统；Pandoc采用GNU GPL授权协议发布，属于自由软件。  </p>
+<h1 id="Pandoc的功能"><a href="#Pandoc的功能" class="headerlink" title="Pandoc的功能"></a>Pandoc的功能</h1><p>pandoc可以在以下格式中任意转换：</p>
+<p><img src="http://i4.piimg.com/1949/5ca844b85ee6345d.png" alt="Markdown"></p>
+<h1 id="Pandoc的安装"><a href="#Pandoc的安装" class="headerlink" title="Pandoc的安装"></a>Pandoc的安装</h1><p>Pandoc提供以下安装方式（如果需要输出PDF文档，则除Pandoc本身以外，还应另外安装 <a href="https://www.latex-project.org/" target="_blank" rel="external">LaTeX 套件</a>）：</p>
+<h2 id="Windows及Mac-OS-X"><a href="#Windows及Mac-OS-X" class="headerlink" title="Windows及Mac OS X"></a>Windows及Mac OS X</h2><p>下载 <a href="https://github.com/jgm/pandoc/releases/tag/1.16.0.2" target="_blank" rel="external">安装包</a> 并执行安装程序。</p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>　　尝试使用Linux发行版的软件管理工具安装，目前Pandoc已加入Debian、Ubuntu、Slackware、Arch、Fedora、NiXOS和gentoo的软件仓库。如果无法通过软件管理工具直接安装Pandoc，则可采取下面介绍的全平台安装方式，即首先安装Haskell平台，再在其基础上安装Pandoc。绝大多数Linux发行版的软件仓库中都包含Haskell平台。</p>
+<p>就我自己用的ubuntu下安装Pandoc,还算是非常简单的。以下是ubuntu下的使用步骤:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install pandoc</div></pre></td></tr></table></figure></p>
+<p>如果apt-get安装的pandoc功能不齐全，可以如官网上一样先安装cable,再安装pandoc:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo apt-get autoremove pandoc</div><div class="line">sudo apt-get install cabal-install</div><div class="line">cabal update</div><div class="line">cabal install pandoc</div></pre></td></tr></table></figure></p>
+<h2 id="BSD"><a href="#BSD" class="headerlink" title="BSD"></a>BSD</h2><p>FreeBSD和NetBSD的软件仓库中已包含Pandoc，可直接安装。</p>
+<h2 id="全平台"><a href="#全平台" class="headerlink" title="全平台"></a>全平台</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cabal update</div><div class="line">cabal install pandoc</div></pre></td></tr></table></figure>
+<h1 id="Pandoc的使用"><a href="#Pandoc的使用" class="headerlink" title="Pandoc的使用"></a>Pandoc的使用</h1><p>Pandoc的基本指令格式是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandoc [options] [input-file] ...</div></pre></td></tr></table></figure></p>
+<p>简单的格式转换指令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandoc -o output.html input.md</div></pre></td></tr></table></figure></p>
+<p>其中 -o ouput.html 表示输出文件为output.html，input.md是输入文件。<br>Pandoc会根据文件的后缀名自动判断格式，用户也可以显式地指定输入文件和输出文件格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandoc -f markdown -t html -o output.html input.md</div></pre></td></tr></table></figure></p>
+<p>其中 -f markdown 表示输入文件格式为Markdown，-t html 表示输出文件格式为HTML。</p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="Markdown转html"><a href="#Markdown转html" class="headerlink" title="Markdown转html"></a>Markdown转html</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandoc README.md -o README.html</div></pre></td></tr></table></figure>
+<h2 id="Markdown转word"><a href="#Markdown转word" class="headerlink" title="Markdown转word"></a>Markdown转word</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandoc README.md -o README.docx</div></pre></td></tr></table></figure>
+<h2 id="Markdown转pdf"><a href="#Markdown转pdf" class="headerlink" title="Markdown转pdf"></a>Markdown转pdf</h2><p>首先安装安装LaTex<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandoc README.md --latex-engine=xelatex -o README.pdf</div></pre></td></tr></table></figure></p>
+<p>否则会有这样的报错:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandoc: xelatex not found. xelatex is needed for pdf output.</div></pre></td></tr></table></figure></p>
+<p>pandoc 在生成pdf时需要借助XelaTex排版引擎.那我们就需要安装这个引擎<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">apt-get install -y texlive</div></pre></td></tr></table></figure></p>
+<h2 id="Markdown转在线PPT"><a href="#Markdown转在线PPT" class="headerlink" title="Markdown转在线PPT"></a>Markdown转在线PPT</h2><ul>
+<li><p>采用默认模板渲染一个独立的DZSlides幻灯片：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandoc README.md -o README.html -t dzslides -s</div></pre></td></tr></table></figure>
+</li>
+<li><p>使用带样式的模板<br>首先需要从GitHub上获取<a href="https://github.com/hakimel/reveal.js" target="_blank" rel="external">https://github.com/hakimel/reveal.js</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/hakimel/reveal.js</div></pre></td></tr></table></figure>
+</li>
+<li><p>渲染幻灯片：  </p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pandoc slides.md -o slides.html -t revealjs -s</div></pre></td></tr></table></figure>
+<ul>
+<li>除了默认的外观主题以外，reveal.js还提供了多个主题可供选择<pre><code>pandoc README.md -o README.html -t revealjs -s -V theme=beige
+</code></pre></li>
+</ul>
+<blockquote>
+<p>default：（默认）深灰色背景，白色文字</p>
+<p>beige：米色背景，深色文字</p>
+<p>sky：天蓝色背景，白色细文字</p>
+<p>night：黑色背景，白色粗文字</p>
+<p>serif：浅色背景，灰色衬线文字</p>
+<p>simple：白色背景，黑色文字</p>
+<p>solarized：奶油色背景，深青色文字</p>
+</blockquote>
+<h1 id="更多其他用法"><a href="#更多其他用法" class="headerlink" title="更多其他用法"></a>更多其他用法</h1><p>访问Pandoc官网查看更多 <a href="http://pandoc.org/demos.html" target="_blank" rel="external">Demo</a></p>
+<p>本文出处：<a href="http://www.tuicool.com/articles/juUjInn" target="_blank" rel="external">http://www.tuicool.com/articles/juUjInn</a><br>其他文档：<a href="http://yanping.me/cn/blog/2012/03/13/pandoc/" target="_blank" rel="external">http://yanping.me/cn/blog/2012/03/13/pandoc/</a><br>　　　　　<a href="http://blog.sina.com.cn/s/blog_5ee56d450101dah2.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_5ee56d450101dah2.html</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/image/wx.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/13/XenServer架构之HA概述/" class="archive-article-date">
-  	<time datetime="2017-06-12T18:13:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/13/XenServer架构之HA概述/">XenServer架构之HA概述</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://quanjm.github.io/2017/06/14/Pandoc--markdown的好基友/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/13/Xenserver启动VM报错修复/" class="archive-article-date">
-  	<time datetime="2017-06-12T18:12:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/13/Xenserver启动VM报错修复/">XenServer启动VM异常状态修复</a>
-    </h1>
+  
+    <a href="/2017/06/13/XenServer架构之HA概述/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">XenServer架构之HA概述</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/13/Xenserver存储健康检查/" class="archive-article-date">
-  	<time datetime="2017-06-12T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/13/Xenserver存储健康检查/">XenServer存储关系和健康检查</a>
-    </h1>
+  <div id="SOHUCS" sid="Pandoc--markdown的好基友" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/31/Xen+Ceph+iscsi/" class="archive-article-date">
-  	<time datetime="2017-05-30T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/31/Xen+Ceph+iscsi/">Xen+Ceph+iscsi</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ceph</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<!-- 网易云跟帖 -->
   
-  
-    </div></section>
-  
+<section class="duoshuo" id="comments">  
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>  
+<script>						
+ var cloudTieConfig = {	
+   url: "", 			
+   sourceId: "2017/06/14/Pandoc--markdown的好基友/",		
+   productKey: "1d5308078c8e444e9514b7aa10f65fc2",	
+   target: "cloud-tie-wrapper"	
+ };					
+</script>					
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+</section>						
+								
 
-    
 
 
           </div>
@@ -382,9 +456,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

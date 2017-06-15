@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://quanjm.github.io">
-  <title>Tag: 存储 | Quinn&#39;blog</title>
+  <title>hexo deploy免秘钥 | Quinn&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录生活点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Quinn&#39;blog">
-<meta property="og:url" content="http://quanjm.github.io/tags/存储/index.html">
+  <meta name="description" content="写这个文档的原因是因为之前网上找的文档都没用……反正我那些文档是没有设置成功过。每次hexo d -g推送代码的时候还是需要输入账号名、密码。 -　生成 SSH 密钥1234567891011121314151617181920212223242526272829root@Quinn-PC:~# ssh-keygen -t rsa -C &amp;quot;q_j_m@outlook.com&amp;quot">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo deploy免秘钥">
+<meta property="og:url" content="http://quanjm.github.io/2017/06/15/hexo deploy免秘钥/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
-<meta property="og:description" content="记录生活点滴">
+<meta property="og:description" content="写这个文档的原因是因为之前网上找的文档都没用……反正我那些文档是没有设置成功过。每次hexo d -g推送代码的时候还是需要输入账号名、密码。 -　生成 SSH 密钥1234567891011121314151617181920212223242526272829root@Quinn-PC:~# ssh-keygen -t rsa -C &amp;quot;q_j_m@outlook.com&amp;quot">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/hexo/1.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/hexo/2.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/hexo/3.png">
+<meta property="og:updated_time" content="2017-06-15T11:43:23.370Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Quinn&#39;blog">
-<meta name="twitter:description" content="记录生活点滴">
+<meta name="twitter:title" content="hexo deploy免秘钥">
+<meta name="twitter:description" content="写这个文档的原因是因为之前网上找的文档都没用……反正我那些文档是没有设置成功过。每次hexo d -g推送代码的时候还是需要输入账号名、密码。 -　生成 SSH 密钥1234567891011121314151617181920212223242526272829root@Quinn-PC:~# ssh-keygen -t rsa -C &amp;quot;q_j_m@outlook.com&amp;quot">
+<meta name="twitter:image" content="http://orkku9lvb.bkt.clouddn.com/hexo/1.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -150,202 +156,224 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-hexo deploy免秘钥" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo deploy免秘钥
+    </h1>
+  
+
+<!-- 显示阅读和评论数 -->
+
+<br/>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+<span class="icon-sort"></span>
+<span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+          阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+</span>
+</a>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:#ef7522;font-size:14px;">
+	<span class="icon-comment"></span>
+<!-- 隐藏评论数 -->
+	<span class="join-text" style="color:#ef7522;font-size:14px;">评论数:</span>
+	<span class="join-count">0</span>次
+</a>
+
+
+        
+        <a href="/2017/06/15/hexo deploy免秘钥/" class="archive-article-date">
+  	<time datetime="2017-06-15T10:13:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-15</time>
+</a>
+        
+      </header>
     
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　　写这个文档的原因是因为之前网上找的文档都没用……反正我那些文档是没有设置成功过。每次hexo d -g推送代码的时候还是需要输入账号名、密码。</p>
+<p>-　生成 SSH 密钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">root@Quinn-PC:~# ssh-keygen -t rsa -C &quot;q_j_m@outlook.com&quot;</div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file in which to save the key (/root/.ssh/id_rsa):　　　　--直接三次回车</div><div class="line">Enter passphrase (empty for no passphrase):</div><div class="line">Enter same passphrase again:</div><div class="line">Your identification has been saved in /root/.ssh/id_rsa.</div><div class="line">Your public key has been saved in /root/.ssh/id_rsa.pub.</div><div class="line">The key fingerprint is:</div><div class="line">SHA256:Mkv1O+weoThQZwvACvQFl0yx/D1zVJGiDv0hPGdCI20 q_j_m@outlook.com</div><div class="line">The key&apos;s randomart image is:</div><div class="line">+---[RSA 2048]----+</div><div class="line">|.. o==o .    oo  |</div><div class="line">|. . =+.. E ...   |</div><div class="line">| . o oo X o..    |</div><div class="line">|  .  ..*.X.+     |</div><div class="line">|    . +.S+X..    |</div><div class="line">|     o = +++     |</div><div class="line">|      + . =      |</div><div class="line">|       . . o     |</div><div class="line">|         .o      |</div><div class="line">+----[SHA256]-----+</div><div class="line"></div><div class="line"></div><div class="line">root@Quinn-PC:~# ll .ssh/</div><div class="line">总用量 8</div><div class="line">drwx------ 0 root root  512 6月  15 18:04 ./</div><div class="line">drwx------ 0 root root  512 6月  15 17:44 ../</div><div class="line">-rw------- 1 root root 1675 6月  15 18:04 id_rsa</div><div class="line">-rw-r--r-- 1 root root  399 6月  15 18:04 id_rsa.pub</div></pre></td></tr></table></figure></p>
+<ul>
+<li>设置 Github 项目的 Deploy keys</li>
+</ul>
+<p>可以选择是在用户设置中添加密钥（Settings –&gt; SSH GPG keys）还是单个项目中添加密钥，在这里我就在我们的博客项目中添加密钥，此处以我的博客为例。在 quanjm.github.io 的首页菜单栏中点击 Settings –&gt; Deploy keys –&gt; Add deploy key，然后将生成的 id_rsa.pub 中的内容全选复制到 key 输入框中，然后点击 Add key 完成添加公钥。<br><img src="http://orkku9lvb.bkt.clouddn.com/hexo/1.png" alt="1"></p>
+<p><img src="http://orkku9lvb.bkt.clouddn.com/hexo/2.png" alt="2"></p>
+<p><img src="http://orkku9lvb.bkt.clouddn.com/hexo/3.png" alt="3"></p>
+<ul>
+<li>接下来测试配置是否成功<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">root@Quinn-PC:~/.ssh# ssh -T git@github.com</div><div class="line">The authenticity of host &apos;github.com (192.30.255.113)&apos; can&apos;t be established.</div><div class="line">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.</div><div class="line">Are you sure you want to continue connecting (yes/no)? yes</div><div class="line">Warning: Permanently added &apos;github.com,192.30.255.113&apos; (RSA) to the list of known hosts.</div><div class="line">Hi quanjm! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>出现类似内容表示配置完成并且成功。</p>
+<ul>
+<li>设置博客的提交地址<br>按照网上的方法提交的链接仍然会是https的链接，需要修改hexo 的配置文件 _config.yml中的deploy属性。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">……</div><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: git@github.com:quanjm/quanjm.github.io.git</div><div class="line">……</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>将repo修改成了git@github.com:quanjm/quanjm.github.io.git，这个时候我再尝试了 hexo deploy，就不用输入密码了。</p>
+<ul>
+<li>hexo 常用命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">hexo n &quot;我的博客&quot; == hexo new &quot;我的博客&quot; #新建文章</div><div class="line">hexo p == hexo publish</div><div class="line">hexo g == hexo generate#生成</div><div class="line">hexo s == hexo server #启动服务预览</div><div class="line">hexo d == hexo deploy#部署</div><div class="line">hexo new &quot;postName&quot; #新建文章</div><div class="line">hexo new page &quot;pageName&quot; #新建页面</div><div class="line">hexo generate #生成静态页面至public目录</div><div class="line">hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</div><div class="line">hexo deploy #将.deploy目录部署到GitHub</div><div class="line"></div><div class="line">hexo s -g   生成静态页面至public目录，并将代码部署到GitHub</div><div class="line">hexo d -g   生成静态页面至public目录，并开启本地预览</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/image/wx.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/15/fio硬盘测试/" class="archive-article-date">
-  	<time datetime="2017-06-14T18:46:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/15/fio硬盘测试/">fio硬盘测试</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://quanjm.github.io/2017/06/15/hexo deploy免秘钥/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/13/Xenserver启动VM报错修复/" class="archive-article-date">
-  	<time datetime="2017-06-12T18:12:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/13/Xenserver启动VM报错修复/">XenServer启动VM异常状态修复</a>
-    </h1>
+  
+    <a href="/2017/06/15/fio硬盘测试/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/13/Xenserver存储健康检查/" class="archive-article-date">
-  	<time datetime="2017-06-12T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/13/Xenserver存储健康检查/">XenServer存储关系和健康检查</a>
-    </h1>
+  <div id="SOHUCS" sid="hexo deploy免秘钥" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/31/Xen+Ceph+iscsi/" class="archive-article-date">
-  	<time datetime="2017-05-30T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/31/Xen+Ceph+iscsi/">Xen+Ceph+iscsi</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ceph</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<!-- 网易云跟帖 -->
   
-  
-    </div></section>
-  
+<section class="duoshuo" id="comments">  
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>  
+<script>						
+ var cloudTieConfig = {	
+   url: "", 			
+   sourceId: "2017/06/15/hexo deploy免秘钥/",		
+   productKey: "1d5308078c8e444e9514b7aa10f65fc2",	
+   target: "cloud-tie-wrapper"	
+ };					
+</script>					
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+</section>						
+								
 
-    
 
 
           </div>
@@ -378,9 +406,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",

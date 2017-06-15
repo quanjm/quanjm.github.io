@@ -228,57 +228,6 @@
     <article id="post-fio硬盘测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="测试前提">测试前提</h1>
-<p>我们在进行测试时，都会分清楚:<br>
-- 测试对象：要区分硬盘、SSD、RAID、SAN、云硬盘等，因为它们有不同的特点<br>
-- 测试指标：IOPS和MBPS(吞吐率)，下面会具体阐述<br>
-- 测试工具：Linux下常用Fio、dd工具, Windows下常用<a href="http://www.iometer.org/doc/downloads.html" target="_blank" rel="external">IOMeter</a><br>
-- 测试参数: IO大小，寻址空间，队列深度，读写模式，随机/顺序模式<br>
-- 测试方法：也就是测试步骤。<br>
-- 测试是为了对比，所以需要定性和定量。在宣布自己的测试结果时，需要说明这次测试的工具、参数、方法，以便于比较。<br>
-        
-          <a class="article-more-a" href="/2017/06/15/fio硬盘测试/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/15/fio硬盘测试/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-<!-- 网易云跟帖 -->
-								
-
-
-
-  
-    <article id="post-fio硬盘测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
       <header class="article-header">
         
   
@@ -486,6 +435,88 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/13/XenServer架构之HA概述/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+<!-- 网易云跟帖 -->
+								
+
+
+
+  
+    <article id="post-Xenserver启动VM报错修复" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/13/Xenserver启动VM报错修复/">XenServer启动VM异常状态修复</a>
+    </h1>
+  
+
+<!-- 显示阅读和评论数 -->
+
+
+        
+        <a href="/2017/06/13/Xenserver启动VM报错修复/" class="archive-article-date">
+  	<time datetime="2017-06-12T18:12:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>文章一</strong>   </p>
+<p>　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可用的错误。  </p>
+        
+          <a class="article-more-a" href="/2017/06/13/Xenserver启动VM报错修复/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/13/Xenserver启动VM报错修复/">展开全文 >></a>
         </p>
       
 

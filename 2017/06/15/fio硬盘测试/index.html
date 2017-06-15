@@ -15,18 +15,18 @@
 <meta property="og:url" content="http://quanjm.github.io/2017/06/15/fio硬盘测试/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
 <meta property="og:description" content="测试前提我们在进行测试时，都会分清楚:    测试对象：要区分硬盘、SSD、RAID、SAN、云硬盘等，因为它们有不同的特点   测试指标：IOPS和MBPS(吞吐率)，下面会具体阐述   测试工具：Linux下常用Fio、dd工具,  Windows下常用IOMeter    测试参数: IO大小，寻址空间，队列深度，读写模式，随机/顺序模式    测试方法：也就是测试步骤。    测试是为了对">
-<meta property="og:image" content="http://i2.muimg.com/1949/c4d96b7abbf107c7.png">
-<meta property="og:image" content="http://i4.piimg.com/597560/9fca66bd4073fdf8.jpg">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/fio/1.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/fio/2.jpg">
 <meta property="og:image" content="http://i4.piimg.com/597560/e8c9001137d16c7a.jpg">
-<meta property="og:image" content="http://i2.muimg.com/597560/4f40753792feb555.jpg">
-<meta property="og:image" content="http://i4.piimg.com/597560/c315021e05b278ea.jpg">
-<meta property="og:image" content="http://i4.piimg.com/597560/a03befb7d3f96b18.jpg">
-<meta property="og:image" content="http://i4.piimg.com/597560/8dd622e085984db9.jpg">
-<meta property="og:updated_time" content="2017-06-14T17:26:58.382Z">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/fio/3.jpg">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/fio/4.jpg">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/fio/5.jpg">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/fio/6.jpg">
+<meta property="og:updated_time" content="2017-06-15T09:34:26.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fio硬盘测试">
 <meta name="twitter:description" content="测试前提我们在进行测试时，都会分清楚:    测试对象：要区分硬盘、SSD、RAID、SAN、云硬盘等，因为它们有不同的特点   测试指标：IOPS和MBPS(吞吐率)，下面会具体阐述   测试工具：Linux下常用Fio、dd工具,  Windows下常用IOMeter    测试参数: IO大小，寻址空间，队列深度，读写模式，随机/顺序模式    测试方法：也就是测试步骤。    测试是为了对">
-<meta name="twitter:image" content="http://i2.muimg.com/1949/c4d96b7abbf107c7.png">
+<meta name="twitter:image" content="http://orkku9lvb.bkt.clouddn.com/fio/1.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -252,7 +252,7 @@
 <li>降低服务时间  </li>
 </ul>
 <h1 id="硬盘测试"><a href="#硬盘测试" class="headerlink" title="硬盘测试"></a>硬盘测试</h1><h2 id="硬盘原理"><a href="#硬盘原理" class="headerlink" title="硬盘原理"></a>硬盘原理</h2><p>我们应该如何测试SATA/SAS硬盘呢？首先需要了解磁盘的构造，并了解磁盘的工作方式：</p>
-<p><img src="http://i2.muimg.com/1949/c4d96b7abbf107c7.png" alt="Markdown"></p>
+<p><img src="http://orkku9lvb.bkt.clouddn.com/fio/1.png" alt="Markdown"></p>
 <p>每个硬盘都有一个磁头(相当于银行的柜台)，硬盘的工作方式是：<br>收到IO请求，得到地址和数据大小<br>移动磁头(寻址)<br>找到相应的磁道(寻址)<br>读取数据<br>传输数据<br>则磁盘的随机IO服务时间: 服务时间 = 寻道时间 + 旋转时间 + 传输时间 对于10000转速的SATA硬盘来说，一般寻道时间是7 ms，旋转时间是3 ms, 64KB的传输时间是 0.8 ms， 则SATA硬盘每秒可以进行随机IO操作是1000/(7 + 3 + 0.8) = 93，所以我们估算SATA硬盘64KB随机写的IOPS是93。一般的硬盘厂商都会标明顺序读写的MBPS。 我们在列出IOPS时，需要说明IO大小，寻址空间，读写模式，顺序/随机，队列深度。我们一般常用的IO大小是4KB，这是因为文件系统常用的块大小是4KB。</p>
 <h2 id="使用fio测试硬盘"><a href="#使用fio测试硬盘" class="headerlink" title="使用fio测试硬盘"></a>使用fio测试硬盘</h2><p>现在，我们来测试下SATA硬盘的4KB随机写的IOPS。因为我的环境是Linux，所以我使用FIO来测试。<br>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install fio -y</div></pre></td></tr></table></figure></p>
 <h3 id="fio参数"><a href="#fio参数" class="headerlink" title="fio参数"></a>fio参数</h3><ul>
@@ -289,7 +289,7 @@
 <li>4k随机写测试</li>
 </ul>
 <p>我们首先进行4K随机写测试，测试参数和测试结果如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fio -ioengine=libaio -bs=4k -direct=1 -thread -rw=randwrite -size=100G -filename=/dev/vdb</div><div class="line">-name=&quot;EBS 4KB randwrite test&quot; -iodepth=32 -runtime=60</div></pre></td></tr></table></figure></p>
-<p><img src="http://i4.piimg.com/597560/9fca66bd4073fdf8.jpg" alt="Markdown"><br>蓝色方框表示IOPS是5900，在正常的误差范围内。绿色方框表示IO请求的平均响应时间为5.42ms， 黄色方框表示95%的IO请求的响应时间是小于等于 6.24 ms的。</p>
+<p><img src="http://orkku9lvb.bkt.clouddn.com/fio/2.jpg" alt="Markdown"><br>蓝色方框表示IOPS是5900，在正常的误差范围内。绿色方框表示IO请求的平均响应时间为5.42ms， 黄色方框表示95%的IO请求的响应时间是小于等于 6.24 ms的。</p>
 <ul>
 <li>4K随机读测试</li>
 </ul>
@@ -299,15 +299,15 @@
 <li>512KB顺序写测试</li>
 </ul>
 <p>最后我们来测试512KB顺序写，看看云硬盘的最大MBPS(吞吐率)是多少，测试参数和测试结果如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fio -ioengine=libaio -bs=512k -direct=1 -thread -rw=write -size=100G -filename=/dev/vdb</div><div class="line">-name=&quot;EBS 512KB seqwrite test&quot; -iodepth=64 -runtime=60</div></pre></td></tr></table></figure></p>
-<p><img src="http://i2.muimg.com/597560/4f40753792feb555.jpg" alt="Markdown"><br>蓝色方框表示MBPS为174226KB/s，约为170MB/s。</p>
+<p><img src="http://orkku9lvb.bkt.clouddn.com/fio/3.jpg" alt="Markdown"><br>蓝色方框表示MBPS为174226KB/s，约为170MB/s。</p>
 <h3 id="队列深度对IOPS的影响"><a href="#队列深度对IOPS的影响" class="headerlink" title="队列深度对IOPS的影响"></a>队列深度对IOPS的影响</h3><p>什么是磁盘的队列深度？<br><strong>在某个时刻,有N个inflight的IO请求,包括在队列中的IO请求、磁盘正在处理的IO请求。N就是队列深度。</strong><br>加大硬盘队列深度就是让硬盘不断工作，减少硬盘的空闲时间。<br><strong>加大队列深度 -&gt; 提高利用率 -&gt; 获得IOPS和MBPS峰值 -&gt; 注意响应时间在可接受的范围内</strong><br>增加队列深度的办法有很多      </p>
 <ul>
 <li>使用异步IO，同时发起多个IO请求，相当于队列中有多个IO请求   </li>
 <li>多线程发起同步IO请求，相当于队列中有多个IO请求   </li>
 <li>增大应用IO大小，到达底层之后，会变成多个IO请求，相当于队列中有多个IO请求 队列深度增加了。队列深度增加了，IO在队列的等待时间也会增加，导致IO响应时间变大，这需要权衡。</li>
 </ul>
-<p>下面我们做两次测试，分别 iodepth = 1和iodepth = 4的情况。下面是iodepth = 1的测试结果。<br><img src="http://i4.piimg.com/597560/c315021e05b278ea.jpg" alt="Markdown"><br>上图中蓝色方框里面的是测出的IOPS 230, 绿色方框里面是每个IO请求的平均响应时间，大约是4.3ms。黄色方框表示95%的IO请求的响应时间是小于等于 9.920 ms。橙色方框表示该硬盘的利用率已经达到了98.58%。 下面是 iodepth = 4 的测试:<br><img src="http://i4.piimg.com/597560/a03befb7d3f96b18.jpg" alt="Markdown"><br>我们发现这次测试的IOPS没有提高，反而IO平均响应时间变大了，是17ms。 为什么这里提高队列深度没有作用呢，原因当队列深度为1时，硬盘的利用率已经达到了98%，说明硬盘已经没有多少空闲时间可以压榨了。而且响应时间为 4ms。 对于SATA硬盘，当增加队列深度时，并不会增加IOPS，只会增加响应时间。这是因为硬盘只有一个磁头，并行度是1， 所以当IO请求队列变长时，每个IO请求的等待时间都会变长，导致响应时间也变长。 这是以前用IOMeter测试一块SATA硬盘的4K随机写性能，可以看到IOPS不会随着队列深度的增加而增加，反而是平均响应时间在倍增   </p>
-<h3 id="寻址空间对IOPS的影响"><a href="#寻址空间对IOPS的影响" class="headerlink" title="寻址空间对IOPS的影响"></a>寻址空间对IOPS的影响</h3><p>我们继续测试SATA硬盘，前面我们提到寻址空间参数也会对IOPS产生影响，下面我们就测试当size=1GB时的情况。<br><img src="http://i4.piimg.com/597560/8dd622e085984db9.jpg" alt="Markdown"><br>我们发现，当设置size=1GB时，IOPS会显著提高到568，IO平均响应时间会降到7ms(队列深度为4)。这是因为当寻址空间为1GB时，磁头需要移动的距离变小了，每次IO请求的服务时间就降低了，这就是空间局部性原理。假如我们测试的RAID卡或者是磁盘阵列(SAN)，它们可能会用Cache把这1GB的数据全部缓存，极大降低了IO请求的服务时间(内存的写操作比硬盘的写操作快很1000倍)。所以设置寻址空间为1GB的意义不大，因为我们是要测试硬盘的全盘性能，而不是Cache的性能。   </p>
+<p>下面我们做两次测试，分别 iodepth = 1和iodepth = 4的情况。下面是iodepth = 1的测试结果。<br><img src="http://orkku9lvb.bkt.clouddn.com/fio/4.jpg" alt="Markdown"><br>上图中蓝色方框里面的是测出的IOPS 230, 绿色方框里面是每个IO请求的平均响应时间，大约是4.3ms。黄色方框表示95%的IO请求的响应时间是小于等于 9.920 ms。橙色方框表示该硬盘的利用率已经达到了98.58%。 下面是 iodepth = 4 的测试:<br><img src="http://orkku9lvb.bkt.clouddn.com/fio/5.jpg" alt="Markdown"><br>我们发现这次测试的IOPS没有提高，反而IO平均响应时间变大了，是17ms。 为什么这里提高队列深度没有作用呢，原因当队列深度为1时，硬盘的利用率已经达到了98%，说明硬盘已经没有多少空闲时间可以压榨了。而且响应时间为 4ms。 对于SATA硬盘，当增加队列深度时，并不会增加IOPS，只会增加响应时间。这是因为硬盘只有一个磁头，并行度是1， 所以当IO请求队列变长时，每个IO请求的等待时间都会变长，导致响应时间也变长。 这是以前用IOMeter测试一块SATA硬盘的4K随机写性能，可以看到IOPS不会随着队列深度的增加而增加，反而是平均响应时间在倍增   </p>
+<h3 id="寻址空间对IOPS的影响"><a href="#寻址空间对IOPS的影响" class="headerlink" title="寻址空间对IOPS的影响"></a>寻址空间对IOPS的影响</h3><p>我们继续测试SATA硬盘，前面我们提到寻址空间参数也会对IOPS产生影响，下面我们就测试当size=1GB时的情况。<br><img src="http://orkku9lvb.bkt.clouddn.com/fio/6.jpg" alt="Markdown"><br>我们发现，当设置size=1GB时，IOPS会显著提高到568，IO平均响应时间会降到7ms(队列深度为4)。这是因为当寻址空间为1GB时，磁头需要移动的距离变小了，每次IO请求的服务时间就降低了，这就是空间局部性原理。假如我们测试的RAID卡或者是磁盘阵列(SAN)，它们可能会用Cache把这1GB的数据全部缓存，极大降低了IO请求的服务时间(内存的写操作比硬盘的写操作快很1000倍)。所以设置寻址空间为1GB的意义不大，因为我们是要测试硬盘的全盘性能，而不是Cache的性能。   </p>
 <h2 id="磁盘优化手段"><a href="#磁盘优化手段" class="headerlink" title="磁盘优化手段"></a>磁盘优化手段</h2><p>硬盘厂商提高硬盘性能的方法主要是降低服务时间(延迟)：</p>
 <ul>
 <li>提高转速(降低旋转时间和传输时间)</li>
@@ -460,6 +460,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/06/15/fio硬盘测试/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
   
     <a href="/2017/06/14/Pandoc--markdown的好基友/" id="article-nav-older" class="article-nav-link-wrap">

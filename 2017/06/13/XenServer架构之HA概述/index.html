@@ -15,12 +15,12 @@
 <meta property="og:url" content="http://quanjm.github.io/2017/06/13/XenServer架构之HA概述/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
 <meta property="og:description" content="XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Pool Master的角色，以">
-<meta property="og:image" content="http://i4.piimg.com/1949/a5714ce8e303ce53.png">
-<meta property="og:updated_time" content="2017-06-14T17:26:58.315Z">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/XenServer%E6%9E%B6%E6%9E%84%E4%B9%8BHA%E6%A6%82%E8%BF%B0%20/1.png">
+<meta property="og:updated_time" content="2017-06-15T09:34:26.099Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XenServer架构之HA概述">
 <meta name="twitter:description" content="XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Pool Master的角色，以">
-<meta name="twitter:image" content="http://i4.piimg.com/1949/a5714ce8e303ce53.png">
+<meta name="twitter:image" content="http://orkku9lvb.bkt.clouddn.com/XenServer%E6%9E%B6%E6%9E%84%E4%B9%8BHA%E6%A6%82%E8%BF%B0%20/1.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -195,7 +195,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>　　XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。<br>　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Pool Master的角色，以便XenServer 资源池能够继续正常的工作。<br><a id="more"></a><br>　　XenServer HA通过多个检测信号机制来定期检查主机。这些检测信号使用存储接口（至检测信号 SR）和网络接口（通过管理接口）进行信号的检测和传递。这两种检测信号路由都可以是多宿（多连接）的，以防止产生误报，从而进一步提高可靠性。<br>　　要实现XenServer HA功能，只要满足以下几个条件：<br>　　（1）虚拟机必须置于共享存储中，例如iSCSI、FC SAN，NFS；<br>　　（2）需要两台以上的XenServer，并且设置了资源池，Citrix最佳实践建议使用3台XenServer及以上时设置HA；<br>　　（3）所有XenServer有静态管理IP地址；<br>　　（4）购买的XenServer版本需要支持HA。  </p>
-<p>　　下图显示了在启用HA的资源池中，前后两个主机之间的网络链路发生故障后，虚拟机所进行的自动迁移过程。<br><img src="http://i4.piimg.com/1949/a5714ce8e303ce53.png" alt="Markdown"></p>
+<p>　　下图显示了在启用HA的资源池中，前后两个主机之间的网络链路发生故障后，虚拟机所进行的自动迁移过程。<br><img src="http://orkku9lvb.bkt.clouddn.com/XenServer%E6%9E%B6%E6%9E%84%E4%B9%8BHA%E6%A6%82%E8%BF%B0%20/1.png" alt="Markdown"></p>
 <p>当启用HA时，池中的所有主机：</p>
 <ul>
 <li>通过网络定期交换心跳消息；</li>

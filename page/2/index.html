@@ -263,6 +263,7 @@
       
         <p><strong>文章一</strong>   </p>
 <p>　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可用的错误。  </p>
+<h2 id=""><a href="#" class="headerlink" title=""></a>
         
           <a class="article-more-a" href="/2017/06/13/Xenserver启动VM报错修复/#more">more >></a>
         
@@ -344,8 +345,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本部分介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。  </p>
-<h1 id="存储对象概述"><a href="#存储对象概述" class="headerlink" title="存储对象概述"></a>存储对象概述</h1><h2 id="存储库-SR"><a href="#存储库-SR" class="headerlink" title="存储库 (SR)"></a>存储库 (SR)</h2><p>存储库 (SR) 是一个特定存储目标，用于存储虚拟机 (VM) 虚拟磁盘映像 (VDI)。VDI 是一个表示虚拟硬盘(HDD) 的存储抽象。    </p>
-<p>SR具有对本地连接的IDE、SATA、SCSI和SAS驱动器和远程连接的iSCSI、NFS、SAS和光纤通道的内置支持，因而非常灵活。SR和VDI抽象允许在支持高级存储功能（如精简置备、VDI  快照和快速克隆）的存储目标上提供这些功能。对于本身不直接支持高级操作的存储子系统，会根据实现这些功能的 Microsoft 虚拟硬盘 (VHD) 规范提供软件堆栈。<br>
+<h2 id=""><a href="#" class="headerlink" title=""></a>
         
           <a class="article-more-a" href="/2017/06/13/Xenserver存储健康检查/#more">more >></a>
         

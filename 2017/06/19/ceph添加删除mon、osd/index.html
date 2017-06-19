@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://quanjm.github.io">
   <title>ceph添加&amp;删除mon&amp;osd | Quinn&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;amp;osd的增加和删除。 添加monitor  修改配置文件添加新的mon，逗号分隔不要有空格:  1234cat /root/cluster/ceph.conf |grep monmon_initial_members = test3, test4, test5mon_host = 10.0.0.">
+  <meta name="description" content="前言　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;amp;osd的增加和删除。">
 <meta name="keywords" content="ceph,存储">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ceph添加&amp;删除mon&amp;osd">
 <meta property="og:url" content="http://quanjm.github.io/2017/06/19/ceph添加删除mon、osd/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
-<meta property="og:description" content="前言　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;amp;osd的增加和删除。 添加monitor  修改配置文件添加新的mon，逗号分隔不要有空格:  1234cat /root/cluster/ceph.conf |grep monmon_initial_members = test3, test4, test5mon_host = 10.0.0.">
-<meta property="og:updated_time" content="2017-06-19T12:01:35.029Z">
+<meta property="og:description" content="前言　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;amp;osd的增加和删除。">
+<meta property="og:updated_time" content="2017-06-19T12:12:05.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ceph添加&amp;删除mon&amp;osd">
-<meta name="twitter:description" content="前言　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;amp;osd的增加和删除。 添加monitor  修改配置文件添加新的mon，逗号分隔不要有空格:  1234cat /root/cluster/ceph.conf |grep monmon_initial_members = test3, test4, test5mon_host = 10.0.0.">
+<meta name="twitter:description" content="前言　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;amp;osd的增加和删除。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -222,8 +222,7 @@
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>前言</strong><br>　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;osd的增加和删除。</p>
-<p><strong>添加monitor</strong></p>
+        <p><strong>前言</strong><br>　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;osd的增加和删除。<br><a id="more"></a><br><strong>添加monitor</strong></p>
 <ul>
 <li>修改配置文件<br>添加新的mon，逗号分隔不要有空格:</li>
 </ul>

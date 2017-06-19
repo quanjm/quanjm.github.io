@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://quanjm.github.io">
-  <title>Archives | Quinn&#39;blog</title>
+  <title>ceph添加&amp;删除mon&amp;osd | Quinn&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录生活点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Quinn&#39;blog">
-<meta property="og:url" content="http://quanjm.github.io/archives/page/2/index.html">
+  <meta name="description" content="前言　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;amp;osd的增加和删除。 添加monitor  修改配置文件添加新的mon，逗号分隔不要有空格:  1234cat /root/cluster/ceph.conf |grep monmon_initial_members = test3, test4, test5mon_host = 10.0.0.">
+<meta name="keywords" content="ceph,存储">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ceph添加&amp;删除mon&amp;osd">
+<meta property="og:url" content="http://quanjm.github.io/2017/06/19/ceph添加删除mon、osd/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
-<meta property="og:description" content="记录生活点滴">
+<meta property="og:description" content="前言　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;amp;osd的增加和删除。 添加monitor  修改配置文件添加新的mon，逗号分隔不要有空格:  1234cat /root/cluster/ceph.conf |grep monmon_initial_members = test3, test4, test5mon_host = 10.0.0.">
+<meta property="og:updated_time" content="2017-06-19T12:01:35.029Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Quinn&#39;blog">
-<meta name="twitter:description" content="记录生活点滴">
+<meta name="twitter:title" content="ceph添加&amp;删除mon&amp;osd">
+<meta name="twitter:description" content="前言　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;amp;osd的增加和删除。 添加monitor  修改配置文件添加新的mon，逗号分隔不要有空格:  1234cat /root/cluster/ceph.conf |grep monmon_initial_members = test3, test4, test5mon_host = 10.0.0.">
   
   
     <link rel="icon" href="/favicon.png">
@@ -156,88 +158,175 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ceph添加删除mon、osd" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/13/XenServer架构之HA概述/" class="archive-article-date">
-  	<time datetime="2017-06-12T18:13:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/13/XenServer架构之HA概述/">XenServer架构之HA概述</a>
+    <h1 class="article-title" itemprop="name">
+      ceph添加&amp;删除mon&amp;osd
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+<!-- 显示阅读和评论数 -->
+
+<br/>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+<span class="icon-sort"></span>
+<span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+          阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+</span>
+</a>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:#ef7522;font-size:14px;">
+	<span class="icon-comment"></span>
+<!-- 隐藏评论数 -->
+	<span class="join-text" style="color:#ef7522;font-size:14px;">评论数:</span>
+	<span class="join-count">0</span>次
+</a>
+
+
+        
+        <a href="/2017/06/19/ceph添加删除mon、osd/" class="archive-article-date">
+  	<time datetime="2017-06-19T10:46:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-19</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+    <span class="btn-bg"></span>
+    <span class="btn-text">文章导航</span>
+    </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+        
+    </div>
+    <script type="text/javascript">
+     function showToc(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:block");
+          show_toc_btn.setAttribute("style","display:none");
+         };
+      function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+     
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>前言</strong><br>　　本次主要是使用ceph-deploy工具和使用ceph的相关命令实现集群Monitor&amp;osd的增加和删除。</p>
+<p><strong>添加monitor</strong></p>
+<ul>
+<li>修改配置文件<br>添加新的mon，逗号分隔不要有空格:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat /root/cluster/ceph.conf |grep mon</div><div class="line"></div><div class="line">mon_initial_members = test3, test4, test5</div><div class="line">mon_host = 10.0.0.3,10.0.0.4,10.0.0.5</div></pre></td></tr></table></figure>
+<ul>
+<li><p>推送配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ceph-deploy --overwrite-conf config push  test3 test4 test5</div><div class="line">……</div><div class="line">若干log</div><div class="line">……</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加mon</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ceph-deploy mon create test4 test5</div><div class="line">……</div><div class="line">若干log</div><div class="line">……</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看<br>ceph -s可以看到新的MON已经添加进来了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@test3 ~]# ceph -s</div><div class="line">    cluster e40207d9-d9a8-43ba-8d3c-45fb79bfa0f4</div><div class="line">     health HEALTH_OK</div><div class="line">     monmap e1: 3 mons at &#123;test3=10.0.0.3:6789/0,test4=10.0.0.4:6789/0,test5=10.0.0.5:6789/0&#125;</div><div class="line">            election epoch 14, quorum 0,1,2 test3,test4,test5</div><div class="line">            ……</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>需要注意的是，如果新增节点ceph-3上之前部署过MON，必须清理干净之前的MON数据库，否则会有异常发生，因为ceph会在创建MON之前检测/var/lib/ceph/mon/$CLUSTER-$HOSTNAME目录下是否有done文件，如果有的话，就不会新建而沿用原来的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ps aux|grep ceph-mon |awk &apos;&#123;print $2&#125;&apos;|xargs kill -9</div><div class="line">rm -rf /var/run/ceph/*</div><div class="line">rm -rf /var/lib/ceph/mon/*</div><div class="line">rm -rf /var/lib/ceph/bootstrap-mon/*</div><div class="line">rm -rf /etc/ceph/*</div></pre></td></tr></table></figure>
+<hr>
+<p><strong>删除monitor</strong></p>
+<ul>
+<li><p>修改配置文件<br>去除需要删除的节点host</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cat /root/cluster/ceph.conf |grep mon</div><div class="line"></div><div class="line">mon_initial_members = test3</div><div class="line">mon_host = 10.0.0.3</div></pre></td></tr></table></figure>
+</li>
+<li><p>推送配置   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ceph-deploy --overwrite-conf config push test3 test4 test5</div><div class="line">……</div><div class="line">若干log</div><div class="line">……</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除mon<br>通过ceph-deploy移除test4\test5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ceph-deploy mon create test4 test5</div><div class="line">……</div><div class="line">若干log</div><div class="line">……</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看<br>ceph -s可以发现test4\test5这两个个MON已经被删除了</p>
+</li>
+</ul>
+<blockquote>
+<p>ceph-deploy删除MON的时候调用的指令是ceph mon remove ceph-3同时需要keyring,如果某个时候把cephx设置成了none这个MON的keyring是不会生成的。<br>删除的MON的文件夹被移到了/var/lib/ceph/mon-removed,并不是真的删除了，有时候这个文件夹能救ceph一命</p>
+</blockquote>
+<p><strong>添加osd</strong>   </p>
+<ul>
+<li><p>添加test5节点上sdb\sdc\sdd</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ceph-deploy osd create test5:/dev/sda test5:/dev/sdb test5:/dev/sdc --zap-disk</div><div class="line">……</div><div class="line">若干log</div><div class="line">……</div></pre></td></tr></table></figure>
+</li>
+<li><p>检查<br>ceph -s检查集群状态<br>查看磁盘分区和挂载情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@test5 ~]# lsblk</div><div class="line">NAME                                                                                              MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT</div><div class="line">sda                                                                                                 8:0    0 447.1G  0 disk</div><div class="line">├─sda1                                                                                              8:1    0 437.1G  0 part /var/lib/ceph/osd/ceph-6</div><div class="line">└─sda2                                                                                              8:2    0    10G  0 part</div><div class="line">sdb                                                                                                 8:16   0 447.1G  0 disk</div><div class="line">├─sdb1                                                                                              8:17   0 437.1G  0 part /var/lib/ceph/osd/ceph-7</div><div class="line">└─sdb2                                                                                              8:18   0    10G  0 part</div><div class="line">sdc                                                                                                 8:32   0 447.1G  0 disk</div><div class="line">├─sdc1                                                                                              8:33   0 437.1G  0 part /var/lib/ceph/osd/ceph-8</div><div class="line">└─sdc2                                                                                              8:34   0    10G  0 part</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>查看journal分区是否链接好了<br>``<br>[root@test5 ~]# ll /var/lib/ceph/osd/*<br>/var/lib/ceph/osd/ceph-6:<br>total 60<br>-rw-r–r–   1 root root  481 Jun 16 14:17 activate.monmap<br>-rw-r–r–   1 ceph ceph    3 Jun 16 14:17 active<br>-rw-r–r–   1 ceph ceph   37 Jun 16 14:17 ceph_fsid<br>drwxr-xr-x 292 ceph ceph 8192 Jun 17 19:20 current<br>-rw-r–r–   1 ceph ceph   37 Jun 16 14:17 fsid<br>lrwxrwxrwx   1 ceph ceph   58 Jun 16 14:17 journal -&gt; /dev/disk/by-partuuid/ac8846a1-e867-40d7-9bba-fa610160277a<br>-rw-r–r–   1 ceph ceph   37 Jun 16 14:17 journal_uuid<br>-rw——-   1 ceph ceph   56 Jun 16 14:17 keyring<br>-rw-r–r–   1 ceph ceph   21 Jun 16 14:17 magic<br>-rw-r–r–   1 ceph ceph    6 Jun 16 14:17 ready<br>-rw-r–r–   1 ceph ceph    4 Jun 16 14:17 store_version<br>-rw-r–r–   1 ceph ceph   53 Jun 16 14:17 superblock<br>-rw-r–r–   1 root root    0 Jun 16 15:16 sysvinit<br>-rw-r–r–   1 ceph ceph   10 Jun 16 14:17 type<br>-rw-r–r–   1 ceph ceph    2 Jun 16 14:17 whoami<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- 异常处理</div><div class="line">本次添加后新添加的osd并没有被拉起来，手动重启test5上的新增OSD，启动后weight（权重）为0</div></pre></td></tr></table></figure></p>
+<p>[root@test5 ~]# systemctl restart ceph-osd@6<br>[root@test5 ~]# systemctl restart ceph-osd@7<br>[root@test5 ~]# systemctl restart ceph-osd@8<br>[root@test5 ~]# ceph osd tree<br>ID WEIGHT  TYPE NAME      UP/DOWN REWEIGHT PRIMARY-AFFINITY<br>-1 2.58955 root default<br>-2 1.29477     host test3<br> 1 0.43159         osd.1       up  1.00000          1.00000<br> 2 0.43159         osd.2       up  1.00000          1.00000<br> 0 0.43158         osd.0       up  1.00000          1.00000<br>-3 1.29478     host test4<br> 3 0.43159         osd.3       up  1.00000          1.00000<br> 4 0.43159         osd.4       up  1.00000          1.00000<br> 5 0.43159         osd.5       up  1.00000          1.00000<br> 6       0 osd.6               up  1.00000          1.00000<br> 7       0 osd.7               up  1.00000          1.00000<br> 8       0 osd.8               up  1.00000          1.00000<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">添加Bucket test5</div></pre></td></tr></table></figure></p>
+<p> [root@test5 ~]# ceph osd crush add-bucket test5 host<br>added bucket test5 type host to crush map<br>[root@test5 ~]# ceph osd tree<br>ID WEIGHT  TYPE NAME      UP/DOWN REWEIGHT PRIMARY-AFFINITY<br>-4       0 host test5<br>-1 2.58955 root default<br>-2 1.29477     host test3<br> 1 0.43159         osd.1       up  1.00000          1.00000<br> 2 0.43159         osd.2       up  1.00000          1.00000<br> 0 0.43158         osd.0       up  1.00000          1.00000<br>-3 1.29478     host test4<br> 3 0.43159         osd.3       up  1.00000          1.00000<br> 4 0.43159         osd.4       up  1.00000          1.00000<br> 5 0.43159         osd.5       up  1.00000          1.00000<br> 6       0 osd.6               up  1.00000          1.00000<br> 7       0 osd.7               up  1.00000          1.00000<br> 8       0 osd.8               up  1.00000          1.00000<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">将OSD移到test5的host下面，注意添加OSD时的weight是该OSD的实际大小(2T为2 ，800G为0.8)，切勿随意填写！！！</div></pre></td></tr></table></figure></p>
+<p>[root@test5 ~]# ceph osd crush add osd.6 0.43159 host=test5<br>add item id 6 name ‘osd.6’ weight 0.43159 at location {host=test5} to crush map<br>[root@test5 ~]# ceph osd tree<br>ID WEIGHT  TYPE NAME      UP/DOWN REWEIGHT PRIMARY-AFFINITY<br>-4 0.43158 host test5<br> 6 0.43158     osd.6           up  1.00000          1.00000<br>-1 2.58955 root default<br>-2 1.29477     host test3<br> 1 0.43159         osd.1       up  1.00000          1.00000<br> 2 0.43159         osd.2       up  1.00000          1.00000<br> 0 0.43158         osd.0       up  1.00000          1.00000<br>-3 1.29478     host test4<br> 3 0.43159         osd.3       up  1.00000          1.00000<br> 4 0.43159         osd.4       up  1.00000          1.00000<br> 5 0.43159         osd.5       up  1.00000          1.00000<br> 7       0 osd.7               up  1.00000          1.00000<br> 8       0 osd.8               up  1.00000          1.00000</p>
+<p>[root@test5 ~]# ceph osd crush add osd.7 0.43159 host=test5<br>add item id 7 name ‘osd.7’ weight 0.43159 at location {host=test5} to crush map</p>
+<p>[root@test5 ~]# ceph osd crush add osd.8 0.43159 host=test5<br>add item id 8 name ‘osd.8’ weight 0.43159 at location {host=test5} to crush map<br>[root@test5 ~]# ceph osd tree<br>ID WEIGHT  TYPE NAME      UP/DOWN REWEIGHT PRIMARY-AFFINITY<br>-4 1.29474 host test5<br> 6 0.43158     osd.6           up  1.00000          1.00000<br> 7 0.43158     osd.7           up  1.00000          1.00000<br> 8 0.43158     osd.8           up  1.00000          1.00000<br>-1 2.58955 root default<br>-2 1.29477     host test3<br> 1 0.43159         osd.1       up  1.00000          1.00000<br> 2 0.43159         osd.2       up  1.00000          1.00000<br> 0 0.43158         osd.0       up  1.00000          1.00000<br>-3 1.29478     host test4<br> 3 0.43159         osd.3       up  1.00000          1.00000<br> 4 0.43159         osd.4       up  1.00000          1.00000<br> 5 0.43159         osd.5       up  1.00000          1.00000<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">这个时候看起来就顺眼多了，但是存储还是不会调用的，需要将对应的host（test5）移到root下</div></pre></td></tr></table></figure></p>
+<p> [root@test5 ~]# ceph osd crush move test5 root=default<br> moved item id -4 name ‘test5’ to location {root=default} in crush map</p>
+<p> [root@test5 ~]# ceph osd tree<br> ID WEIGHT  TYPE NAME      UP/DOWN REWEIGHT PRIMARY-AFFINITY<br> -1 3.88429 root default<br> -2 1.29477     host test3<br>  1 0.43159         osd.1       up  1.00000          1.00000<br>  2 0.43159         osd.2       up  1.00000          1.00000<br>  0 0.43158         osd.0       up  1.00000          1.00000<br> -3 1.29478     host test4<br>  3 0.43159         osd.3       up  1.00000          1.00000<br>  4 0.43159         osd.4       up  1.00000          1.00000<br>  5 0.43159         osd.5       up  1.00000          1.00000<br> -4 1.29474     host test5<br>  6 0.43158         osd.6       up  1.00000          1.00000<br>  7 0.43158         osd.7       up  1.00000          1.00000<br>  8 0.43158         osd.8       up  1.00000          1.00000<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">查看存储状态，由于新添加了三块OSD所以集群会做backfilling等pg迁移操作，等待集群OK即可。</div></pre></td></tr></table></figure></p>
+<p>[root@test5 ~]# ceph -s<br>    cluster 12741d27-7fbb-4a15-90a8-a73d78f0172d<br>     health HEALTH_WARN<br>            clock skew detected on mon.test5<br>            127 pgs backfill_wait<br>            2 pgs backfilling<br>            2 pgs degraded<br>            1 pgs peering<br>            1 pgs recovery_wait<br>            57 pgs stuck unclean<br>            recovery 4/670906 objects degraded (0.001%)<br>            recovery 379815/670906 objects misplaced (56.612%)<br>            crush map has legacy tunables (require argonaut, min is firefly)<br>            crush map has straw_calc_version=0<br>            Monitor clock skew detected<br>     monmap e3: 3 mons at {test3=10.0.0.3:6789/0,test4=10.0.0.4:6789/0,test5=10.0.0.5:6789/0}<br>            election epoch 36, quorum 0,1,2 test3,test4,test5<br>     osdmap e2477: 9 osds: 9 up, 9 in; 360 remapped pgs<br>            flags sortbitwise<br>      pgmap v3791033: 1088 pgs, 3 pools, 932 GB data, 234 kobjects<br>            1891 GB used, 2085 GB / 3977 GB avail<br>            4/670906 objects degraded (0.001%)<br>            379815/670906 objects misplaced (56.612%)<br>                 724 active+clean<br>                 232 active+remapped<br>                 127 active+remapped+wait_backfill<br>                   2 active+remapped+backfilling<br>                   1 peering<br>                   1 active+degraded<br>                   1 active+recovery_wait+degraded<br>recovery io 330 MB/s, 82 objects/s</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">---</div><div class="line">**删除osd**</div><div class="line"></div><div class="line">正常处理流程：   </div><div class="line">停止osd进程——将节点状态标记为out——从crush中移除节点——删除节点——删除节点认证   </div><div class="line">根据这个方法会触发两次迁移，一次是在节点osd out以后，一次是在crush remove以后。参考![磨渣-删除OSD的正确方式](http://www.zphj1987.com/2016/01/12/%E5%88%A0%E9%99%A4osd%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F/),调整处理步骤能够减少一次数据迁移。</div><div class="line"></div><div class="line">在ceph的集群当中关于节点的替换的问题，一直按照以前的方式进行的处理，处理的步骤如下：</div><div class="line"></div><div class="line">- 调整osd的crush weight</div></pre></td></tr></table></figure>
+<p>ceph osd crush reweight osd.0 0.1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">说明：这个地方如果想慢慢的调整就分几次将crush 的weight 减低到0 ，这个过程实际上是让数据不分布在这个节点上，让数据慢慢的分布到其他节点上，直到最终为没有分布在这个osd，并且迁移完成</div><div class="line">这个地方不光调整了osd 的crush weight ，实际上同时调整了host 的 weight ，这样会调整集群的整体的crush 分布，在osd 的crush 为0 后， 再对这个osd的任何删除相关操作都不会影响到集群的数据的分布</div><div class="line">- 停止osd进程</div></pre></td></tr></table></figure></p>
+<p>systemctl stop ceph-osd@0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">停止到osd的进程，这个是通知集群这个osd进程不在了，不提供服务了，因为本身没权重，就不会影响到整体的分布，也就没有迁移</div><div class="line">- 将节点状态标记为out</div></pre></td></tr></table></figure></p>
+<p>ceph osd out osd.0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">停止到osd的进程，这个是通知集群这个osd不再映射数据了，不提供服务了，因为本身没权重，就不会影响到整体的分布，也就没有迁移</div><div class="line">- 从crush中移除节点</div></pre></td></tr></table></figure></p>
+<p>ceph osd crush remove osd.0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">这个是从crush中删除，因为已经是0了 所以没影响主机的权重，也就没有迁移了</div><div class="line">- 删除节点</div></pre></td></tr></table></figure></p>
+<p>ceph osd rm osd.0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">这个是从集群里面删除这个节点的记录</div><div class="line">- 删除节点认证（不删除编号会占住）</div></pre></td></tr></table></figure></p>
+<p>ceph auth del osd.0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- 删除host节点</div><div class="line">将OSD全部删除后，如果还需要在集群中删除该osd的host节点，可以使用该命令。</div></pre></td></tr></table></figure></p>
+<p>ceph osd crush rm test5<br>```</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>打赏点买糖~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/image/wx.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/13/Xenserver启动VM报错修复/" class="archive-article-date">
-  	<time datetime="2017-06-12T18:12:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/13/Xenserver启动VM报错修复/">XenServer启动VM异常状态修复</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ceph</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -247,149 +336,117 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://quanjm.github.io/2017/06/19/ceph添加删除mon、osd/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/13/Xenserver存储健康检查/" class="archive-article-date">
-  	<time datetime="2017-06-12T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/13/Xenserver存储健康检查/">XenServer存储关系和健康检查</a>
-    </h1>
+  
+    <a href="/2017/06/19/zabbix启动报错/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">zabbix启动报错</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/10/zabbix邮件脚本/" class="archive-article-date">
-  	<time datetime="2017-06-09T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/10/zabbix邮件脚本/">zabbix邮件脚本</a>
-    </h1>
+  <div id="SOHUCS" sid="ceph添加删除mon、osd" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">zabbix</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/08/zabbix3.0快速部署/" class="archive-article-date">
-  	<time datetime="2017-06-07T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/08/zabbix3.0快速部署/">zabbix3.0快速部署</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">zabbix</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<!-- 网易云跟帖 -->
   
-  
-    </div></section>
-  
+<section class="duoshuo" id="comments">  
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>  
+<script>						
+ var cloudTieConfig = {	
+   url: "", 			
+   sourceId: "2017/06/19/ceph添加删除mon、osd/",		
+   productKey: "1d5308078c8e444e9514b7aa10f65fc2",	
+   target: "cloud-tie-wrapper"	
+ };					
+</script>					
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+</section>						
+								
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -422,8 +479,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

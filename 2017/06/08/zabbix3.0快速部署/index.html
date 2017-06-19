@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/zabbix%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2/111.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/zabbix%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2/222.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/zabbix%E9%82%AE%E4%BB%B6%E8%84%9A%E6%9C%AC/6.png">
-<meta property="og:updated_time" content="2017-06-16T06:07:57.913Z">
+<meta property="og:updated_time" content="2017-06-19T12:01:35.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zabbix3.0快速部署">
 <meta name="twitter:description" content="环境说明123456[root@zabbix-server ~]# lsb_release -aLSB Version:	:core-4.1-amd64:core-4.1-noarch:cxx-4.1-amd64:cxx-4.1-noarch:desktop-4.1-amd64:desktop-4.1-noarch:languages-4.1-amd64:languages-4.1-noarch:">
@@ -238,7 +238,7 @@
 <h2 id="关闭selinux和防火墙"><a href="#关闭selinux和防火墙" class="headerlink" title="关闭selinux和防火墙"></a>关闭selinux和防火墙</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">setenforce 0</div><div class="line">systemctl stop firewalld</div></pre></td></tr></table></figure>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="zabbix-server"><a href="#zabbix-server" class="headerlink" title="zabbix-server"></a>zabbix-server</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install zabbix-server-mysql zabbix-web-mysql zabbix-get -y</div></pre></td></tr></table></figure>
 <h2 id="zabbix-agent"><a href="#zabbix-agent" class="headerlink" title="zabbix-agent"></a>zabbix-agent</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install zabbix-agent</div></pre></td></tr></table></figure>
-<h2 id="zabbix-proxy"><a href="#zabbix-proxy" class="headerlink" title="zabbix-proxy"></a>zabbix-proxy</h2><p>选择安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install zabbix-proxy-mysql  zabbix-get -y</div></pre></td></tr></table></figure></p>
+<h2 id="zabbix-proxy"><a href="#zabbix-proxy" class="headerlink" title="zabbix-proxy"></a>zabbix-proxy</h2><p>选择安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum  install -y zabbix-proxy zabbix-proxy-mysql mysql-server</div></pre></td></tr></table></figure></p>
 <h1 id="mysql配置"><a href="#mysql配置" class="headerlink" title="mysql配置"></a>mysql配置</h1><h2 id="启动mysql-并设置开机启动"><a href="#启动mysql-并设置开机启动" class="headerlink" title="启动mysql 并设置开机启动"></a>启动mysql 并设置开机启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">systemctl restart mysql</div><div class="line">systemctl enable mysqld</div></pre></td></tr></table></figure>
 <h2 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h2><p>把root用户登录密码改为123(自行修改)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysqladmin -u root password &quot;123&quot;</div></pre></td></tr></table></figure></p>
 <h2 id="导入数据库"><a href="#导入数据库" class="headerlink" title="导入数据库"></a>导入数据库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cd /usr/share/doc/zabbix-server-mysql-3.0.9/</div><div class="line">gunzip create.sql.gz</div><div class="line">mysql -u root -p  --不能使用明文登陆</div><div class="line"></div><div class="line">mysql&gt; create database zabbix character set utf8 collate utf8_bin; --创建zabbix库</div><div class="line">mysql&gt; flush privileges; --刷新系统授权表（建议做一下）</div><div class="line">mysql&gt; use zabbix;   --进入库</div><div class="line">mysql&gt; source /usr/share/doc/zabbix-server-mysql-3.0.9/create.sql;  --导入库</div><div class="line">mysql&gt; quit;  --退出</div></pre></td></tr></table></figure>
@@ -274,7 +274,7 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>打赏点买糖~<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     

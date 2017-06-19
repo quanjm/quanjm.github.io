@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="http://quanjm.github.io">
   <title>XenServer存储关系和健康检查 | Quinn&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言本部分介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。">
+  <meta name="description" content="前言本文档介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。">
 <meta name="keywords" content="xenserver,脚本,存储">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XenServer存储关系和健康检查">
 <meta property="og:url" content="http://quanjm.github.io/2017/06/13/Xenserver存储健康检查/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
-<meta property="og:description" content="前言本部分介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。">
+<meta property="og:description" content="前言本文档介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/XenServer%E5%AD%98%E5%82%A8%E5%85%B3%E7%B3%BB%E5%92%8C%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/1.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/XenServer%E5%AD%98%E5%82%A8%E5%85%B3%E7%B3%BB%E5%92%8C%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/2.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/XenServer%E5%AD%98%E5%82%A8%E5%85%B3%E7%B3%BB%E5%92%8C%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/3.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/XenServer%E5%AD%98%E5%82%A8%E5%85%B3%E7%B3%BB%E5%92%8C%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/4.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/XenServer%E5%AD%98%E5%82%A8%E5%85%B3%E7%B3%BB%E5%92%8C%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/5.png">
-<meta property="og:updated_time" content="2017-06-19T12:30:06.425Z">
+<meta property="og:updated_time" content="2017-06-19T12:44:18.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XenServer存储关系和健康检查">
-<meta name="twitter:description" content="前言本部分介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。">
+<meta name="twitter:description" content="前言本文档介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。">
 <meta name="twitter:image" content="http://orkku9lvb.bkt.clouddn.com/XenServer%E5%AD%98%E5%82%A8%E5%85%B3%E7%B3%BB%E5%92%8C%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/1.png">
   
   
@@ -208,7 +208,7 @@
     <div id="toc-article" class="toc-article">
         <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
         <strong class="toc-title">文章目录</strong>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">1.1.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#存储对象概述"><span class="toc-number">2.</span> <span class="toc-text">存储对象概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#存储库-SR"><span class="toc-number">2.1.</span> <span class="toc-text">存储库 (SR)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟磁盘映像-VDI"><span class="toc-number">2.2.</span> <span class="toc-text">虚拟磁盘映像 (VDI)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#物理块设备-PBD"><span class="toc-number">2.3.</span> <span class="toc-text">物理块设备 (PBD)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟块设备-VBD"><span class="toc-number">2.4.</span> <span class="toc-text">虚拟块设备 (VBD)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#存储对象摘要"><span class="toc-number">3.</span> <span class="toc-text">存储对象摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用命令"><span class="toc-number">4.</span> <span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SR"><span class="toc-number">4.1.</span> <span class="toc-text">SR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VDI"><span class="toc-number">4.2.</span> <span class="toc-text">VDI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VBD"><span class="toc-number">4.3.</span> <span class="toc-text">VBD</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#脚本"><span class="toc-number">5.</span> <span class="toc-text">脚本</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#本文档介绍有哪些-XenServer-存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。"><span class="toc-number">1.1.</span> <span class="toc-text">本文档介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。  </span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#存储对象概述"><span class="toc-number">2.</span> <span class="toc-text">存储对象概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#存储库-SR"><span class="toc-number">2.1.</span> <span class="toc-text">存储库 (SR)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟磁盘映像-VDI"><span class="toc-number">2.2.</span> <span class="toc-text">虚拟磁盘映像 (VDI)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#物理块设备-PBD"><span class="toc-number">2.3.</span> <span class="toc-text">物理块设备 (PBD)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟块设备-VBD"><span class="toc-number">2.4.</span> <span class="toc-text">虚拟块设备 (VBD)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#存储对象摘要"><span class="toc-number">3.</span> <span class="toc-text">存储对象摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用命令"><span class="toc-number">4.</span> <span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SR"><span class="toc-number">4.1.</span> <span class="toc-text">SR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VDI"><span class="toc-number">4.2.</span> <span class="toc-text">VDI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VBD"><span class="toc-number">4.3.</span> <span class="toc-text">VBD</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#脚本"><span class="toc-number">5.</span> <span class="toc-text">脚本</span></a></li></ol>
     </div>
     <script type="text/javascript">
      function showToc(){
@@ -228,8 +228,8 @@
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本部分介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。  </p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="存储对象概述"><a href="#存储对象概述" class="headerlink" title="存储对象概述"></a>存储对象概述</h1><h2 id="存储库-SR"><a href="#存储库-SR" class="headerlink" title="存储库 (SR)"></a>存储库 (SR)</h2><p>存储库 (SR) 是一个特定存储目标，用于存储虚拟机 (VM) 虚拟磁盘映像 (VDI)。VDI 是一个表示虚拟硬盘(HDD) 的存储抽象。    </p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="本文档介绍有哪些-XenServer-存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。"><a href="#本文档介绍有哪些-XenServer-存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。" class="headerlink" title="本文档介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。  "></a>本文档介绍有哪些 XenServer 存储对象，以及它们之间的关系，并通过脚本形式打印出其健康状态。  </h2><a id="more"></a>
+<h1 id="存储对象概述"><a href="#存储对象概述" class="headerlink" title="存储对象概述"></a>存储对象概述</h1><h2 id="存储库-SR"><a href="#存储库-SR" class="headerlink" title="存储库 (SR)"></a>存储库 (SR)</h2><p>存储库 (SR) 是一个特定存储目标，用于存储虚拟机 (VM) 虚拟磁盘映像 (VDI)。VDI 是一个表示虚拟硬盘(HDD) 的存储抽象。    </p>
 <p>SR具有对本地连接的IDE、SATA、SCSI和SAS驱动器和远程连接的iSCSI、NFS、SAS和光纤通道的内置支持，因而非常灵活。SR和VDI抽象允许在支持高级存储功能（如精简置备、VDI  快照和快速克隆）的存储目标上提供这些功能。对于本身不直接支持高级操作的存储子系统，会根据实现这些功能的 Microsoft 虚拟硬盘 (VHD) 规范提供软件堆栈。   </p>
 <p>SR命令提供用于创建、销毁、克隆、连接、查找它们包含的各个VDI及调整这些 VDI大小的操作。   </p>
 <p>存储库是一个永久性的磁盘上数据结构。对于使用基本块设备的SR类型，创建新SR的过程都包括清除指定存储目标上的所有现有数据。其他存储类型（如 NFS）则会在与现有 SR 平行的存储阵列上创建一个新容器。   </p>

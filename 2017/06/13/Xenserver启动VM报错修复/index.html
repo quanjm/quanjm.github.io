@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://quanjm.github.io/2017/06/13/Xenserver启动VM报错修复/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
 <meta property="og:description" content="文章一    　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可">
-<meta property="og:updated_time" content="2017-06-19T12:30:06.385Z">
+<meta property="og:updated_time" content="2017-06-19T12:44:18.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XenServer启动VM异常状态修复">
 <meta name="twitter:description" content="文章一    　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可">
@@ -199,8 +199,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>文章一</strong>   </p>
-<p>　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可用的错误。  </p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>修复方法如下：</p>
+<h2 id="在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可用的错误。"><a href="#在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可用的错误。" class="headerlink" title="　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可用的错误。  "></a>　　在使用了共享存储的Xenserver集群中，正常关机后的VM可以在集群中的任意节点上启动。在将宿主关机的时候为了保护上面的VM，集群会将宿主上的的VM进行逐个关机（如果开了HA在关机后还会自动在其他宿主上启动），如果是异常断电情况下，集群中VM的状态信息可能还未同步，此时就会出现VM消失的情况，命令行查看VM状态为running，即使状态为关机的VM在启动时也可能会出现VID不可用的错误。  </h2><a id="more"></a>
+<p>修复方法如下：</p>
 <ul>
 <li>重置VM电源状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xe vm-reset-powerstate force=true vm=&lt;vm name&gt;</div></pre></td></tr></table></figure>
 </li>

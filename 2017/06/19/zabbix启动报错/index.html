@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://quanjm.github.io/2017/06/19/zabbix启动报错/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
 <meta property="og:description" content="前言　　由于忘了关闭selinux导致的启动zabbix时报权限被拒绝错误。">
-<meta property="og:updated_time" content="2017-06-20T08:29:22.729Z">
+<meta property="og:updated_time" content="2017-06-21T05:50:05.676Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zabbix启动报错">
 <meta name="twitter:description" content="前言　　由于忘了关闭selinux导致的启动zabbix时报权限被拒绝错误。">
@@ -59,7 +59,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/photos">相册</a></li>
+				<li><a href="/photo">相册</a></li>
 	        
 				<li><a href="/messag">留言板</a></li>
 	        
@@ -141,7 +141,7 @@
 				
 					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/photos">相册</a></li>
+					<li style="width: 33.333333333333336%"><a href="/photo">相册</a></li>
 		        
 					<li style="width: 33.333333333333336%"><a href="/messag">留言板</a></li>
 		        
@@ -212,7 +212,11 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cat /var/log/audit/audit.log</div><div class="line">……</div><div class="line">type=AVC msg=audit(1497864767.121:395): avc:  denied  &#123; setrlimit &#125; for  pid=2796 comm=&quot;zabbix_agentd&quot; scontext=system_u:system_r:zabbix_agent_t:s0 tcontext=system_u:system_r:zabbix_agent_t:s0 tclass=process</div><div class="line">type=SYSCALL msg=audit(1497864767.121:395): arch=c000003e syscall=160 success=no exit=-13 a0=4 a1=7fff6185b060 a2=0 a3=8 items=0 ppid=2795 pid=2796 auid=4294967295 uid=992 gid=990 euid=992 suid=992 fsuid=992 egid=990 sgid=990 fsgid=990 tty=(none) ses=4294967295 comm=&quot;zabbix_agentd&quot; exe=&quot;/usr/sbin/zabbix_agentd&quot; subj=system_u:system_r:zabbix_agent_t:s0 key=(null)</div><div class="line">type=SERVICE_START msg=audit(1497864767.127:396): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg=&apos; comm=&quot;zabbix-agent&quot; exe=&quot;/usr/lib/systemd/systemd&quot; hostname=? addr=? terminal=? res=failed&apos;</div><div class="line">type=SERVICE_START msg=audit(1497864777.129:397): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg=&apos; comm=&quot;zabbix-agent&quot; exe=&quot;/usr/lib/systemd/systemd&quot; hostname=? addr=? terminal=? res=success&apos;</div><div class="line">type=SERVICE_STOP msg=audit(1497864777.129:398): pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg=&apos; comm=&quot;zabbix-agent&quot; exe=&quot;/usr/lib/systemd/systemd&quot; hostname=? addr=? terminal=? res=success&apos;</div><div class="line">……</div></pre></td></tr></table></figure>
 <ul>
-<li>关闭selinux，zabbix可以正常启动。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setenforce 0</div></pre></td></tr></table></figure>
+<li><p>关闭selinux，zabbix可以正常启动。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setenforce 0</div></pre></td></tr></table></figure>
+</li>
+<li><p>永久关闭selinux&amp;防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sed -i &apos;s/SELINUX=.*/SELINUX=disabled/&apos; /etc/selinux/config  </div><div class="line">setenforce 0  </div><div class="line">systemctl stop firewalld  </div><div class="line">systemctl disable firewalld</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><a href="http://www.w2bc.com/article/226282" target="_blank" rel="external">相关文档</a></p>
@@ -351,6 +355,15 @@
   
 
   
+  <div id="SOHUCS" sid="zabbix启动报错" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
 
   
 
@@ -408,7 +421,7 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: true,
+		open_in_new: false,
 		root: "/",
 		innerArchive: true,
 		showTags: true
@@ -507,6 +520,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">kvm</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -549,7 +566,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
             </li>
           
             <li class="search-li">
-              <a href="http://www.taobao.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>维基百科</a>
+              <a href="http://www.taobao.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>百度百科</a>
             </li>
           
         </ul>

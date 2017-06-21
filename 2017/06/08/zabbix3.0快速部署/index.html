@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/zabbix%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2/111.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/zabbix%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2/222.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/zabbix%E9%82%AE%E4%BB%B6%E8%84%9A%E6%9C%AC/6.png">
-<meta property="og:updated_time" content="2017-06-20T08:29:22.704Z">
+<meta property="og:updated_time" content="2017-06-21T05:50:05.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zabbix3.0快速部署">
 <meta name="twitter:description" content="环境说明123456[root@zabbix-server ~]# lsb_release -aLSB Version:	:core-4.1-amd64:core-4.1-noarch:cxx-4.1-amd64:cxx-4.1-noarch:desktop-4.1-amd64:desktop-4.1-noarch:languages-4.1-amd64:languages-4.1-noarch:">
@@ -63,7 +63,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/photos">相册</a></li>
+				<li><a href="/photo">相册</a></li>
 	        
 				<li><a href="/messag">留言板</a></li>
 	        
@@ -145,7 +145,7 @@
 				
 					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/photos">相册</a></li>
+					<li style="width: 33.333333333333336%"><a href="/photo">相册</a></li>
 		        
 					<li style="width: 33.333333333333336%"><a href="/messag">留言板</a></li>
 		        
@@ -235,7 +235,7 @@
 <p><del>rm /run/yum.pid -rf;\<br>yum install -y wget; \<br>mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup; \<br>wget -O /etc/yum.repos.d/CentOS-Base.repo <a href="http://mirrors.aliyun.com/repo/Centos-7.repo" target="_blank" rel="external">http://mirrors.aliyun.com/repo/Centos-7.repo</a>; \<br>wget -O /etc/yum.repos.d/epel.repo <a href="http://mirrors.aliyun.com/repo/epel-7.repo" target="_blank" rel="external">http://mirrors.aliyun.com/repo/epel-7.repo</a>; \<br>yum clean all; \<br>yum makecache; \<br>yum -y install bash-completion redhat-lsb vim ntpdate; \<br>echo “/usr/sbin/ntpdate 118.123.227.45” &gt;&gt; /etc/resolv.conf</del></p>
 <p>查看repo源   </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">[root@zabbix-server ~]# ll /etc/yum.repos.d/</div><div class="line">total 52</div><div class="line">-rw-r--r--  1 root root 2573 May 15  2015 CentOS-Base.repo</div><div class="line">-rw-r--r--. 1 root root 1664 Dec  9  2015 CentOS-Base.repo.backup</div><div class="line">-rw-r--r--  1 root root 1309 Nov 30  2016 CentOS-CR.repo</div><div class="line">-rw-r--r--  1 root root  649 Nov 30  2016 CentOS-Debuginfo.repo</div><div class="line">-rw-r--r--  1 root root  314 Nov 30  2016 CentOS-fasttrack.repo</div><div class="line">-rw-r--r--  1 root root  630 Nov 30  2016 CentOS-Media.repo</div><div class="line">-rw-r--r--  1 root root 1331 Nov 30  2016 CentOS-Sources.repo</div><div class="line">-rw-r--r--  1 root root 2893 Nov 30  2016 CentOS-Vault.repo</div><div class="line">-rw-r--r--. 1 root root 1084 May 15  2015 epel.repo</div><div class="line">-rw-r--r--  1 root root 1056 Dec 28 01:37 epel-testing.repo</div><div class="line">-rw-r--r--  1 root root 1209 Jan 29  2014 mysql-community.repo</div><div class="line">-rw-r--r--  1 root root 1060 Jan 29  2014 mysql-community-source.repo</div><div class="line">-rw-r--r--  1 root root  401 Feb 15  2016 zabbix.repo</div></pre></td></tr></table></figure>
-<h2 id="关闭selinux和防火墙"><a href="#关闭selinux和防火墙" class="headerlink" title="关闭selinux和防火墙"></a>关闭selinux和防火墙</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">setenforce 0</div><div class="line">systemctl stop firewalld</div></pre></td></tr></table></figure>
+<h2 id="关闭selinux和防火墙"><a href="#关闭selinux和防火墙" class="headerlink" title="关闭selinux和防火墙"></a>关闭selinux和防火墙</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sed -i &apos;s/SELINUX=.*/SELINUX=disabled/&apos; /etc/selinux/config  </div><div class="line">setenforce 0  </div><div class="line">systemctl stop firewalld  </div><div class="line">systemctl disable firewalld</div></pre></td></tr></table></figure>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="zabbix-server"><a href="#zabbix-server" class="headerlink" title="zabbix-server"></a>zabbix-server</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install zabbix-server-mysql zabbix-web-mysql zabbix-get -y</div></pre></td></tr></table></figure>
 <h2 id="zabbix-agent"><a href="#zabbix-agent" class="headerlink" title="zabbix-agent"></a>zabbix-agent</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install zabbix-agent</div></pre></td></tr></table></figure>
 <h2 id="zabbix-proxy"><a href="#zabbix-proxy" class="headerlink" title="zabbix-proxy"></a>zabbix-proxy</h2><p>选择安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum  install -y zabbix-proxy zabbix-proxy-mysql mysql-server</div></pre></td></tr></table></figure></p>
@@ -396,6 +396,15 @@
   
 
   
+  <div id="SOHUCS" sid="zabbix3.0快速部署" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
 
   
 
@@ -453,7 +462,7 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: true,
+		open_in_new: false,
 		root: "/",
 		innerArchive: true,
 		showTags: true
@@ -552,6 +561,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">kvm</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -594,7 +607,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
             </li>
           
             <li class="search-li">
-              <a href="http://www.taobao.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>维基百科</a>
+              <a href="http://www.taobao.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>百度百科</a>
             </li>
           
         </ul>

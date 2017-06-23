@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Quinn&#39;blog">
 <meta property="og:description" content="前言　　回想起在某次约谈中被人问到是否精通ceph，脸上带着不屑于嚣张…… 我只想反问：你是否有看过ceph知识树，敢谈“精通”二字。我学东西只是因为兴趣使然，而你口中的“他们熟悉”无非是对着开发组留下来的word文档按部就班而已，在云计算时代这种人肉运维的“经验”早晚是会被替代。只是说能够在面试时背出开机启动过程，但连7和6在系统层面最大的区别都扯不清楚，我也是不晓得为何能够如此膨胀。">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/ceph.png">
-<meta property="og:updated_time" content="2017-06-23T02:46:44.946Z">
+<meta property="og:updated_time" content="2017-06-23T03:00:22.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ceph知识树">
 <meta name="twitter:description" content="前言　　回想起在某次约谈中被人问到是否精通ceph，脸上带着不屑于嚣张…… 我只想反问：你是否有看过ceph知识树，敢谈“精通”二字。我学东西只是因为兴趣使然，而你口中的“他们熟悉”无非是对着开发组留下来的word文档按部就班而已，在云计算时代这种人肉运维的“经验”早晚是会被替代。只是说能够在面试时背出开机启动过程，但连7和6在系统层面最大的区别都扯不清楚，我也是不晓得为何能够如此膨胀。">
@@ -203,8 +203,6 @@
         <p><strong>前言</strong><br>　　回想起在某次约谈中被人问到是否精通ceph，脸上带着不屑于嚣张…… 我只想反问：你是否有看过ceph知识树，敢谈“精通”二字。我学东西只是因为兴趣使然，而你口中的“他们熟悉”无非是对着开发组留下来的word文档按部就班而已，在云计算时代这种人肉运维的“经验”早晚是会被替代。只是说能够在面试时背出开机启动过程，但连7和6在系统层面最大的区别都扯不清楚，我也是不晓得为何能够如此膨胀。<br><a id="more"></a><br>　　据说此图出自Ustack某位工程师，膜拜……  </p>
 <p><strong>知识树</strong></p>
 <p><img src="http://orkku9lvb.bkt.clouddn.com/ceph.png" alt="ceph知识树"></p>
-<p>系统开机启动过程：</p>
-<p>开机－－＞bios或EFI(配置主板的程序，BIOS=basic input and output system，EFI=Extensible Firmware Interface加电自检，找到启动设备的编号)－－&gt;找到mbr（master bootloader record，它是属于硬盘的0磁盘0扇区，硬盘最前的512个节点）－－＞grub－－＞通过grub找到vmlinuz和initramfs(驱动硬件）－－＞ 内核启动，产生init进程－－＞/etc/inittab（确定系统的启动级别）－－＞/etc/rc.sysinit(获取主机的网络环境和主机类型，测试与载入设备，是否启动selinux，模块的加载，设置系统时间……………..）－－》/etc/fstab－－》按照inittab里的级别来对应的启动/etc/rcX.d/里的服务－－＞/etc/rc.local－－》gdm系统登录–》 可以输入用户名和密码登录了</p>
 
       
 

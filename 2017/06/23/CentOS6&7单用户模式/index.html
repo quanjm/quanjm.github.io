@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/5.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/7.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/8.png">
-<meta property="og:updated_time" content="2017-06-22T14:57:57.884Z">
+<meta property="og:updated_time" content="2017-06-23T02:34:45.349Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7&#x2F;6单用户模式">
 <meta name="twitter:description" content="前言　　CentOS7使用systemd取代传统SysV的启动控制流程，和CentOS6不仅在命令上有些许区别，在其他地方也有很大的区别，这里我简单的讲下单用户模式修改密码。">
@@ -212,13 +212,13 @@
       
         <p><strong>前言</strong><br>　　CentOS7使用systemd取代传统SysV的启动控制流程，和CentOS6不仅在命令上有些许区别，在其他地方也有很大的区别，这里我简单的讲下单用户模式修改密码。<br><a id="more"></a><br><strong>CentOS7进入单用户模式</strong></p>
 <ul>
-<li>开机时随便按下键盘，进入以下菜单,并按==e==键进行修改</li>
+<li>开机时随便按下键盘，进入以下菜单,并按<code>e</code>键进行修改</li>
 </ul>
 <p><img src="http://orkku9lvb.bkt.clouddn.com/%E5%8D%95%E7%94%A8%E6%88%B71.jpeg" alt="1"></p>
 <ul>
-<li>定位到==ro==<br><img src="http://orkku9lvb.bkt.clouddn.com/%E5%8D%95%E7%94%A8%E6%88%B72.jpeg" alt="2"></li>
-<li>把ro改成==rw init=/sysroot/bin/sh==<br><img src="http://orkku9lvb.bkt.clouddn.com/%E5%8D%95%E7%94%A8%E6%88%B73.jpeg" alt="3"></li>
-<li><p>按 ==Ctrl+x== 保存并退出即可进入单用户模式</p>
+<li>定位到<code>ro</code><br><img src="http://orkku9lvb.bkt.clouddn.com/%E5%8D%95%E7%94%A8%E6%88%B72.jpeg" alt="2"></li>
+<li>把ro改成<code>rw init=/sysroot/bin/sh</code><br><img src="http://orkku9lvb.bkt.clouddn.com/%E5%8D%95%E7%94%A8%E6%88%B73.jpeg" alt="3"></li>
+<li><p>按 <code>Ctrl+x</code> 保存并退出即可进入单用户模式</p>
 </li>
 <li><p>依次输入以下命令进行root密码修改，修改完成之后强制重启即可。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">chroot /sysroot/</div><div class="line">passwd root</div><div class="line">touch /.autorelabel</div></pre></td></tr></table></figure>
@@ -228,16 +228,16 @@
 <hr>
 <p><strong>CentOS6进入单用户模式</strong>     </p>
 <ul>
-<li><p>同样是在booting的时候按任意键，然后在grub菜单处选择内核按==e==键进入。<br><img src="http://orkku9lvb.bkt.clouddn.com/2.png" alt=""></p>
+<li><p>同样是在booting的时候<code>按任意键</code>，然后在grub菜单处选择内核按<code>e</code>键进入。<br><img src="http://orkku9lvb.bkt.clouddn.com/2.png" alt=""></p>
 </li>
 <li><p><strong><em>如果你出现下方那样的结果，，那就GG了，grub加密了只能通过rescue模式进去。（再次缅怀下强大的ustack……）</em></strong><br><img src="http://orkku9lvb.bkt.clouddn.com/1.png" alt=""></p>
 </li>
-<li>选择第二项，按==e==键<br><img src="http://orkku9lvb.bkt.clouddn.com/3.png" alt=""></li>
-<li>在rhgb quiet最后加”空格”，然后键入==”1”==或==s==或==S==或==single==都行，反正就是你开心就好，然后按回车键返回上一层。<br><img src="http://orkku9lvb.bkt.clouddn.com/4.png" alt=""></li>
-<li>按==b==键启动系统<br><img src="http://orkku9lvb.bkt.clouddn.com/5.png" alt=""></li>
+<li>选择第二项，按<code>e</code>键<br><img src="http://orkku9lvb.bkt.clouddn.com/3.png" alt=""></li>
+<li>在<code>rhgb quiet</code>最后加”空格”，然后键入<code>1</code>或<code>s</code>或<code>S</code>或<code>single</code>都行，反正就是你开心就好，然后按回车键返回上一层。<br><img src="http://orkku9lvb.bkt.clouddn.com/4.png" alt=""></li>
+<li>按<code>b</code>键启动系统<br><img src="http://orkku9lvb.bkt.clouddn.com/5.png" alt=""></li>
 <li>过程如图<br><img src="http://orkku9lvb.bkt.clouddn.com/7.png" alt=""></li>
 <li>直接修改密码退出即可</li>
-<li>你也可以选择去掉/etc/passwd里root用户第二列的==x==，这样确认登陆时就不需要密码，加回x，密码不变<br><img src="http://orkku9lvb.bkt.clouddn.com/8.png" alt=""></li>
+<li>你也可以选择去掉/etc/passwd里root用户第二列的<code>x</code>，这样确认登陆时就不需要密码，加回<code>x</code>，密码不变<br><img src="http://orkku9lvb.bkt.clouddn.com/8.png" alt=""></li>
 </ul>
 
       

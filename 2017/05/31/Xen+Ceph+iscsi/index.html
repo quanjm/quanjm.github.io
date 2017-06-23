@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://quanjm.github.io/2017/05/31/Xen+Ceph+iscsi/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
 <meta property="og:description" content="前言　　本文参考徐小胖的CEPH快速部署，xenserver7底层虽然是CentOS7但是部署上还是有点小坑的，这里需要特别感谢leon和eden大师的大力协助,本文共分为三大部分：ceph部署、iscsi配置、开关机脚本部分。">
-<meta property="og:updated_time" content="2017-06-23T07:57:53.391Z">
+<meta property="og:updated_time" content="2017-06-23T08:57:16.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xen+Ceph+iscsi">
 <meta name="twitter:description" content="前言　　本文参考徐小胖的CEPH快速部署，xenserver7底层虽然是CentOS7但是部署上还是有点小坑的，这里需要特别感谢leon和eden大师的大力协助,本文共分为三大部分：ceph部署、iscsi配置、开关机脚本部分。">
@@ -265,8 +265,12 @@
 <li><p>增加ceph的源  </p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">cat &gt; /etc/yum.repos.d/ceph.repo &lt;&lt; EOF  </div><div class="line">[ceph]  </div><div class="line">name=ceph  </div><div class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-jewel/el7/x86_64/  </div><div class="line">gpgcheck=0  </div><div class="line">[ceph-noarch]  </div><div class="line">name=cephnoarch  </div><div class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-jewel/el7/noarch/  </div><div class="line">gpgcheck=0  </div><div class="line">EOF</div></pre></td></tr></table></figure>
-<h4 id="安装ceph客户端"><a href="#安装ceph客户端" class="headerlink" title="安装ceph客户端"></a>安装ceph客户端</h4><p>每个节点都需要安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum makecache  </div><div class="line">yum install ceph ceph-radosgw rdate –y</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">cat &gt; /etc/yum.repos.d/ceph-10.2.3.repo &lt;&lt; EOF  </div><div class="line">[ceph]  </div><div class="line">name=ceph  </div><div class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-jewel/el7/x86_64/  </div><div class="line">gpgcheck=0  </div><div class="line">[ceph-noarch]  </div><div class="line">name=cephnoarch  </div><div class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-jewel/el7/noarch/  </div><div class="line">gpgcheck=0  </div><div class="line">EOF</div></pre></td></tr></table></figure>
+<ul>
+<li>可选ceph-10.2.5<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cat &gt; /etc/yum.repos.d/ceph-10.2.5.repo &lt;&lt; EOF</div><div class="line">[ceph_local]</div><div class="line">name=ceph</div><div class="line">baseurl=http://118.123.227.45/ceph-10.2.5/</div><div class="line">gpgcheck=0</div><div class="line">EOF</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="安装ceph客户端"><a href="#安装ceph客户端" class="headerlink" title="安装ceph客户端"></a>安装ceph客户端</h4><p>每个节点都需要安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum makecache  </div><div class="line">yum install ceph ceph-radosgw rdate -y</div></pre></td></tr></table></figure></p>
 <h4 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">selinux &amp;iptables  </div><div class="line">sed -i &apos;s/SELINUX=.*/SELINUX=disabled/&apos; /etc/selinux/config  </div><div class="line">setenforce 0  </div><div class="line">systemctl stop iptables  </div><div class="line">systemctl disable iptables　　　　　　--CentOS7是firewalld</div></pre></td></tr></table></figure>
 <h4 id="同步时间："><a href="#同步时间：" class="headerlink" title="同步时间："></a>同步时间：</h4><ol>
 <li>直接同步某台公网时间服务器</li>

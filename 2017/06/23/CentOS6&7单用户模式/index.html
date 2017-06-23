@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://quanjm.github.io">
-  <title>CentOS7/6单用户模式 | Quinn&#39;blog</title>
+  <title>CentOS7&amp;6单用户模式 | Quinn&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言　　CentOS7使用systemd取代传统SysV的启动控制流程，和CentOS6不仅在命令上有些许区别，在其他地方也有很大的区别，这里我简单的讲下单用户模式修改密码。">
 <meta name="keywords" content="Linux,CentOS7">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS7&#x2F;6单用户模式">
+<meta property="og:title" content="CentOS7&amp;6单用户模式">
 <meta property="og:url" content="http://quanjm.github.io/2017/06/23/CentOS6&7单用户模式/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
 <meta property="og:description" content="前言　　CentOS7使用systemd取代传统SysV的启动控制流程，和CentOS6不仅在命令上有些许区别，在其他地方也有很大的区别，这里我简单的讲下单用户模式修改密码。">
@@ -26,9 +26,9 @@
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/5.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/7.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/8.png">
-<meta property="og:updated_time" content="2017-06-23T02:34:45.349Z">
+<meta property="og:updated_time" content="2017-06-23T07:38:37.567Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS7&#x2F;6单用户模式">
+<meta name="twitter:title" content="CentOS7&amp;6单用户模式">
 <meta name="twitter:description" content="前言　　CentOS7使用systemd取代传统SysV的启动控制流程，和CentOS6不仅在命令上有些许区别，在其他地方也有很大的区别，这里我简单的讲下单用户模式修改密码。">
 <meta name="twitter:image" content="http://orkku9lvb.bkt.clouddn.com/%E5%8D%95%E7%94%A8%E6%88%B71.jpeg">
   
@@ -177,7 +177,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      CentOS7/6单用户模式
+      CentOS7&amp;6单用户模式
     </h1>
   
 
@@ -206,12 +206,36 @@
       </header>
     
 <!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+    <span class="btn-bg"></span>
+    <span class="btn-text">文章导航</span>
+    </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS7进入单用户模式"><span class="toc-number">2.</span> <span class="toc-text">CentOS7进入单用户模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CentOS6进入单用户模式"><span class="toc-number">3.</span> <span class="toc-text">CentOS6进入单用户模式</span></a></li></ol>
+    </div>
+    <script type="text/javascript">
+     function showToc(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:block");
+          show_toc_btn.setAttribute("style","display:none");
+         };
+      function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
      
 <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>前言</strong><br>　　CentOS7使用systemd取代传统SysV的启动控制流程，和CentOS6不仅在命令上有些许区别，在其他地方也有很大的区别，这里我简单的讲下单用户模式修改密码。<br><a id="more"></a><br><strong>CentOS7进入单用户模式</strong></p>
-<ul>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>　　CentOS7使用systemd取代传统SysV的启动控制流程，和CentOS6不仅在命令上有些许区别，在其他地方也有很大的区别，这里我简单的讲下单用户模式修改密码。<br><a id="more"></a>   </p>
+<h3 id="CentOS7进入单用户模式"><a href="#CentOS7进入单用户模式" class="headerlink" title="CentOS7进入单用户模式"></a>CentOS7进入单用户模式</h3><ul>
 <li>开机时随便按下键盘，进入以下菜单,并按<code>e</code>键进行修改</li>
 </ul>
 <p><img src="http://orkku9lvb.bkt.clouddn.com/%E5%8D%95%E7%94%A8%E6%88%B71.jpeg" alt="1"></p>
@@ -226,8 +250,7 @@
 </ul>
 <p><img src="http://orkku9lvb.bkt.clouddn.com/%E5%8D%95%E7%94%A8%E6%88%B74.jpeg" alt="3"></p>
 <hr>
-<p><strong>CentOS6进入单用户模式</strong>     </p>
-<ul>
+<h3 id="CentOS6进入单用户模式"><a href="#CentOS6进入单用户模式" class="headerlink" title="CentOS6进入单用户模式"></a>CentOS6进入单用户模式</h3><ul>
 <li><p>同样是在booting的时候<code>按任意键</code>，然后在grub菜单处选择内核按<code>e</code>键进入。<br><img src="http://orkku9lvb.bkt.clouddn.com/2.png" alt=""></p>
 </li>
 <li><p><strong><em>如果你出现下方那样的结果，，那就GG了，grub加密了只能通过rescue模式进去。（再次缅怀下强大的ustack……）</em></strong><br><img src="http://orkku9lvb.bkt.clouddn.com/1.png" alt=""></p>

@@ -39,7 +39,7 @@
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8521.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8522.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8523.png">
-<meta property="og:updated_time" content="2017-06-25T12:50:18.285Z">
+<meta property="og:updated_time" content="2017-06-25T12:51:52.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XenServer7.0安装">
 <meta name="twitter:description" content="前言　　周五又一次手抖把郭工一台server的根目录删了，差点没被打死，为我自己默哀三秒…… 死里逃生，趁着这个机会整理一下xenserver7.0安装手册。　　操作有风险，删除需谨慎呐~~~">
@@ -249,7 +249,7 @@
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>　　周五又一次手抖把郭工一台server的根目录删了，差点没被打死，为我自己默哀三秒…… 死里逃生，趁着这个机会整理一下xenserver7.0安装手册。<br>　　操作有风险，删除需谨慎呐~~~<br><a id="more"></a></p>
 <h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>戴尔R620<br>XenServer7.0</p>
-<h3 id="raid设置"><a href="#raid设置" class="headerlink" title="raid设置"></a>raid设置</h3><p>　　开机启动，服务器自检，看到提示，按<code>ctrl+R</code>进入RAID。一般会对系统盘做<code>Raid1</code>，剩下磁盘用于部署ceph 需要直通（ceph不做raid，有些raid卡不支持noraid（passthrough），可以做单盘raid0否则xenserver可能会识别不到磁盘）</p>
+<h3 id="raid设置"><a href="#raid设置" class="headerlink" title="raid设置"></a>raid设置</h3><p>　　开机启动，服务器自检，看到提示，按<code>ctrl+R</code>进入RAID。一般会对系统盘做<code>Raid1</code>，剩下磁盘用于部署ceph 设置直通性能会更好（我这里用的是SSD，ceph不做raid，有些raid卡不支持noraid（passthrough），可以做单盘raid0否则xenserver可能会识别不到磁盘）,此处不细讲。</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
 <li>在设置好Read后重启服务器,出现如下界面后按F11进入快速启动选项<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%851.png" alt=""></li>
 <li>选择USB启动进行安装部署，具体看需求<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%852.png" alt=""></li>

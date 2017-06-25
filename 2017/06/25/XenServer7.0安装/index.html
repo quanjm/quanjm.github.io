@@ -6,17 +6,44 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://quanjm.github.io">
-  <title>Archives: 2017/6 | Quinn&#39;blog</title>
+  <title>XenServer7.0安装 | Quinn&#39;blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录生活点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Quinn&#39;blog">
-<meta property="og:url" content="http://quanjm.github.io/archives/2017/06/page/3/index.html">
+  <meta name="description" content="前言　　周五又一次手抖把郭工一台server的根目录删了，差点没被打死，为我自己默哀三秒…… 死里逃生，趁着这个机会整理一下xenserver7.0安装手册。　　操作有风险，删除需谨慎呐~~~">
+<meta name="keywords" content="xenserver">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XenServer7.0安装">
+<meta property="og:url" content="http://quanjm.github.io/2017/06/25/XenServer7.0安装/index.html">
 <meta property="og:site_name" content="Quinn&#39;blog">
-<meta property="og:description" content="记录生活点滴">
+<meta property="og:description" content="前言　　周五又一次手抖把郭工一台server的根目录删了，差点没被打死，为我自己默哀三秒…… 死里逃生，趁着这个机会整理一下xenserver7.0安装手册。　　操作有风险，删除需谨慎呐~~~">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%851.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%852.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%853.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8524.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%854.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%855.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%856.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%857.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%858.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%859.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8510.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8511.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8512.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8513.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8514.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8515.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8516.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8517.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8518.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8519.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8520.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8521.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8522.png">
+<meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8523.png">
+<meta property="og:updated_time" content="2017-06-25T12:49:13.403Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Quinn&#39;blog">
-<meta name="twitter:description" content="记录生活点滴">
+<meta name="twitter:title" content="XenServer7.0安装">
+<meta name="twitter:description" content="前言　　周五又一次手抖把郭工一台server的根目录删了，差点没被打死，为我自己默哀三秒…… 死里逃生，趁着这个机会整理一下xenserver7.0安装手册。　　操作有风险，删除需谨慎呐~~~">
+<meta name="twitter:image" content="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%851.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -156,36 +183,133 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-XenServer7.0安装" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/13/Xenserver存储健康检查/" class="archive-article-date">
-  	<time datetime="2017-06-12T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/13/Xenserver存储健康检查/">XenServer存储关系和健康检查</a>
+    <h1 class="article-title" itemprop="name">
+      XenServer7.0安装
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+<!-- 显示阅读和评论数 -->
+
+<br/>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+<span class="icon-sort"></span>
+<span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+          阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+</span>
+</a>
+<a class="cloud-tie-join-count" href="javascript:void(0);" style="color:#ef7522;font-size:14px;">
+	<span class="icon-comment"></span>
+<!-- 隐藏评论数 -->
+	<span class="join-text" style="color:#ef7522;font-size:14px;">评论数:</span>
+	<span class="join-count">0</span>次
+</a>
+
+
+        
+        <a href="/2017/06/25/XenServer7.0安装/" class="archive-article-date">
+  	<time datetime="2017-06-25T10:00:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-25</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+    <span class="btn-bg"></span>
+    <span class="btn-text">文章导航</span>
+    </p>
+    <div id="toc-article" class="toc-article">
+        <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境"><span class="toc-number">2.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#raid设置"><span class="toc-number">3.</span> <span class="toc-text">raid设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">4.</span> <span class="toc-text">安装</span></a></li></ol>
+    </div>
+    <script type="text/javascript">
+     function showToc(){
+          var toc_article = document.getElementById("toc-article");
+          var show_toc_btn = document.getElementById("show-toc-btn");
+          toc_article.setAttribute("style","display:block");
+          show_toc_btn.setAttribute("style","display:none");
+         };
+      function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+   </script>
+     
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>　　周五又一次手抖把郭工一台server的根目录删了，差点没被打死，为我自己默哀三秒…… 死里逃生，趁着这个机会整理一下xenserver7.0安装手册。<br>　　操作有风险，删除需谨慎呐~~~<br><a id="more"></a></p>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>戴尔R620<br>XenServer7.0</p>
+<h3 id="raid设置"><a href="#raid设置" class="headerlink" title="raid设置"></a>raid设置</h3><p>　　开机启动，服务器自检，看到提示，按ctrl+R进入RAID。一般会对系统盘做<code>Raid1</code>，剩下磁盘用于部署ceph 需要直通（ceph不做raid，有些raid卡不支持noraid（passthrough），可以做单盘raid0否则xenserver可能会识别不到磁盘）</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li>在设置好Read后重启服务器,出现如下界面后按F11进入快速启动选项<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%851.png" alt=""></li>
+<li>选择USB启动进行安装部署，具体看需求<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%852.png" alt=""></li>
+<li>进入安装界面<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%853.png" alt=""><br>如果需要进行特殊配置，在此处应该快速按下任意键，输入<code>shell</code>并回车,进入命令行。</li>
+<li>修改log分区<br><code>vi /opt/xensource/installer/constants.py</code><br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8524.png" alt=""><br>找到<code>logs_size</code>等号后面输入自己想要修改的大小，单位是<code>M</code>，默认是<code>5G</code>，如果在dome0内部署其他服务日志分区很快就会被用满。<br><code>wq!</code>保存退出文本编辑器，<code>exit</code>退出命令行   </li>
+<li>选择<code>[qwerty]us</code><br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%854.png" alt=""></li>
+<li>点击<code>OK</code><br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%855.png" alt=""></li>
+<li>点击<code>Accept EULA</code>(用户协议)<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%856.png" alt=""></li>
+<li>OK<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%857.png" alt=""></li>
+<li>点击第二个“重新安装”，第一个为“升级安装”。<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%858.png" alt=""></li>
+<li>选择安装的系统盘，这里需要注意只选一个，如果选多个会对其他盘做软RAID</li>
+<li>并且勾选<code>enable thin provisioning (optimized storage for xendesktop)</code>(瘦模式)<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%859.png" alt=""><br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8510.png" alt=""></li>
+<li>设置时间，选择<code>Local media</code><br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8511.png" alt=""></li>
+<li>选择<code>NO</code>，不安装帮助文档<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8512.png" alt=""></li>
+<li>选择<code>Skip verification</code>，跳过安装介质检测<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8513.png" alt=""></li>
+<li>设置xenserver登陆密码<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8514.png" alt=""></li>
+<li>根据需求选择网卡配置管理网口<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8515.png" alt=""></li>
+<li>输入IP、掩码、网关<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8516.png" alt=""></li>
+<li>根据需求输入hostname、DNS<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8517.png" alt=""></li>
+<li>选择<code>Asia</code><br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8518.png" alt=""></li>
+<li>选择<code>Shanghai</code><br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8519.png" alt=""></li>
+<li>选择<code>Manual time entry</code>手动输入时间<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8520.png" alt=""></li>
+<li><code>Install XenServer</code>设置完成开始安装<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8521.png" alt=""></li>
+<li>根据实际情况手动输入时间<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8522.png" alt=""></li>
+<li>点击<code>OK</code>重启<br><img src="http://orkku9lvb.bkt.clouddn.com/xen7.0%E5%AE%89%E8%A3%8523.png" alt=""><br>到此安装部署就完成了。</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>打赏点买糖~<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/image/wx.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -193,157 +317,121 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">存储</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://quanjm.github.io/2017/06/25/XenServer7.0安装/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/10/zabbix邮件脚本/" class="archive-article-date">
-  	<time datetime="2017-06-09T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-10</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/10/zabbix邮件脚本/">zabbix邮件脚本</a>
-    </h1>
+  
+    <a href="/2017/06/22/ceph知识树/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ceph知识树</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">zabbix</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/08/zabbix3.0快速部署/" class="archive-article-date">
-  	<time datetime="2017-06-07T18:10:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/08/zabbix3.0快速部署/">zabbix3.0快速部署</a>
-    </h1>
+  <div id="SOHUCS" sid="XenServer7.0安装" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "true"; 
+var conf = "true"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">zabbix</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/02/CentOS6&7单用户模式/" class="archive-article-date">
-  	<time datetime="2017-06-02T10:46:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/02/CentOS6&7单用户模式/">CentOS7&amp;6单用户模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CentOS7</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<!-- 网易云跟帖 -->
   
-  
-    </div></section>
-  
+<section class="duoshuo" id="comments">  
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>  
+<script>						
+ var cloudTieConfig = {	
+   url: "", 			
+   sourceId: "2017/06/25/XenServer7.0安装/",		
+   productKey: "1d5308078c8e444e9514b7aa10f65fc2",	
+   target: "cloud-tie-wrapper"	
+ };					
+</script>					
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+</section>						
+								
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2017/06/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2017/06/">1</a><a class="page-number" href="/archives/2017/06/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
-  
 
 
           </div>
@@ -376,8 +464,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

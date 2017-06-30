@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/vnc/3.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/vnc/4.png">
 <meta property="og:image" content="http://orkku9lvb.bkt.clouddn.com/vnc/5.png">
-<meta property="og:updated_time" content="2017-06-30T07:35:27.062Z">
+<meta property="og:updated_time" content="2017-06-30T07:38:59.953Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7VNCserver安装配置">
 <meta name="twitter:description" content="前言 　　VNC (Virtual Network Console)是虚拟网络控制台的缩写。它 是一款优秀的远程控制工具软件，由著名的 AT&amp;amp;T 的欧洲研究实验室开发的。VNC 是在基于 UNIX 和 Linux 操作系统的免费的开源软件，远程控制能力强大，高效实用，其性能可以和 Windows 和 MAC 中的任何远程控制软件媲美。 在 Linux 中，VNC 包括以下四个命令：vncs">
@@ -205,13 +205,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>　　VNC (Virtual Network Console)是虚拟网络控制台的缩写。它 是一款优秀的远程控制工具软件，由著名的 AT&amp;T 的欧洲研究实验室开发的。VNC 是在基于 UNIX 和 Linux 操作系统的免费的开源软件，远程控制能力强大，高效实用，其性能可以和 Windows 和 MAC 中的任何远程控制软件媲美。 在 Linux 中，VNC 包括以下四个命令：vncserver，vncviewer，vncpasswd，和 vncconnect。大多数情况下用户只需要其中的两个命令：vncserver 和 vncviewer。<br><a id="more"></a></p>
-<ul>
-<li>环境介绍   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@server-251.9.in ~ ]$ lsb_release -a</div><div class="line">LSB Version:	:core-4.1-amd64:core-4.1-noarch:cxx-4.1-amd64:cxx-4.1-noarch:desktop-4.1-amd64:desktop-4.1-noarch:languages-4.1-amd64:languages-4.1-noarch:printing-4.1-amd64:printing-4.1-noarch</div><div class="line">Distributor ID:	CentOS</div><div class="line">Description:	CentOS Linux release 7.2.1511 (Core)</div><div class="line">Release:	7.2.1511</div><div class="line">Codename:	Core</div></pre></td></tr></table></figure>
-</li>
-</ul>
+<p>　　VNC (Virtual Network Console)是虚拟网络控制台的缩写。它 是一款优秀的远程控制工具软件，由著名的 AT&amp;T 的欧洲研究实验室开发的。VNC 是在基于 UNIX 和 Linux 操作系统的免费的开源软件，远程控制能力强大，高效实用，其性能可以和 Windows 和 MAC 中的任何远程控制软件媲美。 在 Linux 中，VNC 包括以下四个命令：vncserver，vncviewer，vncpasswd，和 vncconnect。大多数情况下用户只需要其中的两个命令：vncserver 和 vncviewer。   </p>
 </blockquote>
+<a id="more"></a>   
 <ul>
+<li><p>环境介绍   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@server-251.9.in ~ ]$ lsb_release -a</div><div class="line">LSB Version:	:core-4.1-amd64:core-4.1-noarch:cxx-4.1-amd64:cxx-4.1-noarch:desktop-4.1-amd64:desktop-4.1-noarch:languages-4.1-amd64:languages-4.1-noarch:printing-4.1-amd64:printing-4.1-noarch</div><div class="line">Distributor ID:	CentOS</div><div class="line">Description:	CentOS Linux release 7.2.1511 (Core)</div><div class="line">Release:	7.2.1511</div><div class="line">Codename:	Core</div></pre></td></tr></table></figure>
+</li>
 <li><p>安装vncserver</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install tigervnc-server  -y</div></pre></td></tr></table></figure>
 </li>

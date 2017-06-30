@@ -158,6 +158,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-XenServer架构之HA概述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/13/XenServer架构之HA概述/">XenServer架构之HA概述</a>
+    </h1>
+  
+
+<!-- 显示阅读和评论数 -->
+
+
+        
+        <a href="/2017/06/13/XenServer架构之HA概述/" class="archive-article-date">
+  	<time datetime="2017-06-12T18:13:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-13</time>
+</a>
+        
+      </header>
+    
+<!-- 目录内容 -->
+     
+<!-- 目录内容结束 -->
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　　XenServer HA是一套全自动功能设计，规划，安全地恢复出现问题的XenServe 主机上的虚拟机的功能组件。<br>　　启用 HA 后，XenServer 将持续监视池中主机的运行状况。如果当前 VM 主机发生故障，HA 机制会自动将受保护的 VM 移动到一台运行状况良好的主机上。此外，如果发生故障的主机是Pool Master，HA 会自动选择另一台主机来接管Pool Master的角色，以便XenServer 资源池能够继续正常的工作。<br>
+        
+          <a class="article-more-a" href="/2017/06/13/XenServer架构之HA概述/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">xenserver</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">脚本</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/13/XenServer架构之HA概述/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+<!-- 网易云跟帖 -->
+								
+
+
+
+  
     <article id="post-Xenserver启动VM报错修复" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -470,83 +547,6 @@
 
 
   
-    <article id="post-CentOS6&amp;7单用户模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/02/CentOS6&7单用户模式/">CentOS7&amp;6单用户模式</a>
-    </h1>
-  
-
-<!-- 显示阅读和评论数 -->
-
-
-        
-        <a href="/2017/06/02/CentOS6&7单用户模式/" class="archive-article-date">
-  	<time datetime="2017-06-02T10:46:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-02</time>
-</a>
-        
-      </header>
-    
-<!-- 目录内容 -->
-     
-<!-- 目录内容结束 -->
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>　　CentOS7使用systemd取代传统SysV的启动控制流程，和CentOS6不仅在命令上有些许区别，在其他地方也有很大的区别，这里我简单的讲下单用户模式修改密码。<br>
-        
-          <a class="article-more-a" href="/2017/06/02/CentOS6&7单用户模式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">CentOS7</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/02/CentOS6&7单用户模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-<!-- 网易云跟帖 -->
-								
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -698,6 +698,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">CentOS7</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>
